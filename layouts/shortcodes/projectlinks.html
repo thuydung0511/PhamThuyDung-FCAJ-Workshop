@@ -1,17 +1,17 @@
 {{- $lang := .Get "lang" | default "en" -}}
-{{- $projectURL := "http://fighting-game-assets-508768431157.s3-website-ap-southeast-1.amazonaws.com/" -}}
-{{- $repoURL := "https://github.com/Nothingtoread/fighting-game" -}}
+{{- $projectURL := "http://cloudnote-app-0205568-2026.s3-website-ap-southeast-1.amazonaws.com/" -}}
+{{- $repoURL := "https://github.com/thuydung0511" -}}
 {{- $projectLabel := "Project Link" -}}
-{{- $repoLabel := "Repository" -}}
+{{- $repoLabel := "Repository (will be updated soon)" -}}
 {{- if eq $lang "vi" -}}
   {{- $projectLabel = "Liên kết dự án" -}}
-  {{- $repoLabel = "Repository" -}}
+  {{- $repoLabel = "Repository (sẽ cập nhật sau)" -}}
 {{- end -}}
 
 <div class="report-project-links">
   <a class="report-link-card" href="{{ $projectURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $projectLabel }}">
     <span class="report-link-title">{{ $projectLabel }}</span>
-    <span class="report-link-icon"><i class="fas fa-gamepad" aria-hidden="true"></i></span>
+    <span class="report-link-icon"><i class="fas fa-cloud" aria-hidden="true"></i></span>
   </a>
   <a class="report-link-card" href="{{ $repoURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $repoLabel }}">
     <span class="report-link-title">{{ $repoLabel }}</span>

@@ -1,4 +1,4 @@
-**KHOA CÔNG NGHỆ THÔNG TIN** 
+﻿**KHOA CÔNG NGHỆ THÔNG TIN** 
 
 BM03/QT05/ĐT-KT 
 
@@ -16,7 +16,7 @@ BM03/QT05/ĐT-KT
 
 ## **5. Sinh viên thực hiện** : 
 
-Họ tên:Lê Thành Nhơn MSSV: 2280602244 Lớp: 22DTHE4 
+Họ tên:Phạm Thùy Dung MSSV: 0205568 Lớp: 68CNCS 
 
 Ngành: Công Nghệ Thông Tin 
 
@@ -26,25 +26,13 @@ Chuyên ngành: Mạng Máy Tính
 
 |**Tuần**|**Ngày**|**Nội dung**|
 |---|---|---|
-|1|05/05/2026 –<br>11/05/2026|-<br>Nghe giới thiệu về công ty, nhân sự và các đối tác liên kết.<br>-<br>Tạo tài khoản AWS.<br>-<br>Khám phá một số dịch vụ của AWS.|
-|2|12/05/2026 –<br>18/05/2026|-<br>Thực hành các bài lab cơ bản như tạo EC2, VPC,...<br>-<br>Tìm hiểu các kiến thức lý thuyết.|
-|3|19/05/2026 –<br>25/05/2026|-<br>Tiếp tục khám phá các dịch vụ của AWS.<br>-<br>Triển khai thành công các ứng dụng trên AWS.|
-|**4**|26/05/2026 –<br>01/06/2026|-<br>Tiếp tục khám phá các dịch vụ của AWS.<br>-<br>Thực hành tạo các dịch vụ lưu trữ dữ liệu.|
-|**5**|02/06/2026 –<br>08/06/2026|-<br>Tiến hànhgiám sát hệthốngthông qua các dịch vụcủa AWS.|
-
-
-
-1 
-
-|||-<br>Thao tác thêm, sửa, xóa các dịch vụ bằng AWS CLI.|
-|---|---|---|
-|**6**|09/06/2026 –<br>15/06/2026|-<br>Bắt tay vào làm dự án<br>-<br>Prototype mô hình cơ bản của game với scratch|
-|**7**|16/06/2026 –<br>22/06/2026|-<br>Hoàn thiện Mô hình game và kéo về local với leopardjs<br>-<br>Bắt tay vào làm Authentication với netcode|
-|**8**|23/06/2026 –<br>29/06/2026|-<br>Handoff Client với login cho team với netcode và Auth đã sketch<br>-<br>Bắt đầu triển khai CI/CD qua Github và Github Action|
-|**9**|30/06/2026 –<br>06/07/2026|-<br>Quản lý quyền hạn với IAM Permission Boudaries.<br>-<br>Test khả năng push lên Github và ghi nhận khả năng Deploy của<br>CodeDeploy|
-|**10**|07/07/2026<br>-14/07/2026|-<br>Hoàn Thành Đồ án và Bắt đầu viết báo cáo<br>-<br>Handoff doc để bắt đầu làm workshop|
-|**11**|15/07/2026-<br>21/07/2026|-<br>Hoàn thành đề tài workshop.<br>-<br>Deploy thành công website.|
-|**12**|22/07/2026-<br>29/07/2026|- Viết báo cáo thực tập.<br>- Viết Bài thu Hoạch Event|
+|1|01/08/2026 –<br>07/08/2026|-<br>Nghe giới thiệu về công ty, nhân sự và các đối tác liên kết.<br>-<br>Tạo tài khoản AWS.<br>-<br>Khám phá một số dịch vụ của AWS.|
+|2|08/08/2026 –<br>14/08/2026|-<br>Thực hành các bài lab cơ bản như tạo EC2, VPC,...<br>-<br>Tìm hiểu các kiến thức lý thuyết.|
+|3|15/08/2026 –<br>21/08/2026|-<br>Tiếp tục khám phá các dịch vụ của AWS.<br>-<br>Triển khai thành công các ứng dụng trên AWS.|
+|**4**|22/08/2026 –<br>28/08/2026|-<br>Tiếp tục khám phá các dịch vụ của AWS.<br>-<br>Thực hành tạo các dịch vụ lưu trữ dữ liệu (S3, DynamoDB, EBS).|
+|**5**|29/08/2026 –<br>04/09/2026|-<br>Tiến hành giám sát hệ thống thông qua các dịch vụ của AWS (CloudWatch).<br>-<br>Thao tác thêm, sửa, xóa các dịch vụ bằng AWS CLI.|
+|**6**|05/09/2026 –<br>11/09/2026|-<br>Bắt tay vào làm dự án capstone CloudNote.<br>-<br>Tạo bảng DynamoDB `Notes`, role IAM `LambdaNotesExecutionRole` và triển khai Lambda `notes-api` (CRUD).|
+|**7**|12/09/2026 –<br>14/09/2026|-<br>Hoàn thiện ứng dụng CloudNote: API Gateway (HTTP API) + CORS, host frontend trên S3.<br>-<br>Bổ sung giám sát CloudWatch/CloudTrail và demo end-to-end cuối cùng.|
 
 
 

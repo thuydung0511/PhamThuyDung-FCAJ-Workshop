@@ -11,23 +11,25 @@ chapter: false
 
 ### Thông tin sinh viên:
 
-&emsp; **Họ và tên:** Lê Thành Nhơn
+&emsp; **Họ và tên:** Phạm Thùy Dung
 
-&emsp; **Số điện thoại:** 0947885831
+&emsp; **Email:** tacdung511@gmail.com
 
-&emsp; **Email:** nhon30041975@gmail.com
+&emsp; **GitHub:** <https://github.com/thuydung0511>
 
-&emsp; **Trường:** Đại học Sư phạm Kỹ thuật TP.HCM
+&emsp; **LinkedIn:** <https://www.linkedin.com/in/thuydung511/>
+
+&emsp; **Trường:** Đại học Xây dựng Hà Nội
 
 &emsp; **Ngành:** Công nghệ thông tin
 
-&emsp; **Lớp:** 22DTHE4
+&emsp; **Lớp:** 68CNCS
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 
 &emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Thời gian thực tập:** Từ ngày 05/05/2025 đến ngày 30/07/2025
+&emsp; **Thời gian thực tập:** Từ ngày 01/08/2026 đến ngày 14/09/2026
 
 ![Ảnh đại diện](/images/avatar.jpg)
 

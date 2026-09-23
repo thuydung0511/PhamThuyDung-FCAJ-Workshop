@@ -20,7 +20,7 @@ My mentor provided clear guidance on architecture decisions, reviewed progress r
 
 **3. Relevance of work to academic major**
 
-The capstone fighting-game backend aligned well with my **Computer Networks / Information Technology** studies while extending into areas not fully covered in coursework — serverless design, Spot fleet management, GitOps, and VPC endpoint networking. The work bridged university theory with production-style AWS practice.
+The capstone CloudNote project aligned well with my **Computer Networks / Information Technology** studies while extending into areas not fully covered in coursework — serverless design, DynamoDB data modeling, API Gateway integration, CloudWatch monitoring, and CloudTrail auditing. The work bridged university theory with production-style AWS practice.
 
 **4. Learning & skill development opportunities**
 
@@ -32,13 +32,13 @@ The program culture emphasizes learning in public, sharing knowledge at communit
 
 **6. Internship policies / benefits**
 
-The structured 12-week timeline, clear deliverables (worklog, proposal, workshop, report), and access to AWS learning resources provided a well-defined internship path. Internal sessions and community events were valuable complements to self-directed project work.
+The structured 7-week timeline, clear deliverables (worklog, proposal, workshop, report), and access to AWS learning resources provided a well-defined internship path. Internal sessions and community events were valuable complements to self-directed project work.
 
 ---
 
 ### Additional reflections
 
-**What I found most satisfying:** Building end-to-end infrastructure for the fighting-game project — from EC2 warm pool and S3 hosting through OIDC, CodeDeploy, async analytics, and private MatchMaker VPC — and seeing it deploy successfully via GitHub Actions.
+**What I found most satisfying:** Building end-to-end serverless infrastructure for CloudNote — from DynamoDB and Lambda through API Gateway, S3 static hosting, CloudWatch dashboards and CloudTrail — and seeing the full-stack notes application work live in the browser.
 
 **What could be improved for future interns:** Earlier alignment on capstone team roles and a shared deployment checklist would reduce integration friction in the final weeks.
 

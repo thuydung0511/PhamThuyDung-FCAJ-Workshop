@@ -1,5 +1,5 @@
 ---
-title: "Async Processing"
+title: "Monitoring & auditing (CloudWatch, CloudTrail)"
 date: 2024-01-01
 weight: 7
 chapter: false
@@ -8,83 +8,59 @@ pre: " <b> 5.7. </b> "
 
 ## Goal
 
-Implement **Flow E** — when a match ends, copy finished match data from `ActiveMatches` to `MatchAnalytics` asynchronously via **DynamoDB Streams** and a Lambda consumer, without blocking gameplay.
+Observe and audit the **CloudNote** workload: **CloudWatch** tracks Lambda and DynamoDB metrics and raises an alarm on Lambda errors; **CloudTrail** records every management API call in the account.
 
-![Async processing overview](/images/5-Workshop/image30.png)
+![CloudWatch / CloudTrail overview](/images/5-Workshop/image30.png)
 
-## Step 1 — Enable DynamoDB Streams on ActiveMatches
+## Step 1 — Create the CloudWatch dashboard
 
-1. **DynamoDB → Tables → ActiveMatches → Exports and streams**.
-2. Enable stream view type: **NEW_AND_OLD_IMAGES** (needed to capture state before delete on rematch).
+1. **CloudWatch → Dashboards → Create dashboard** → name `CloudNote-Dashboard`.
+2. Add a **Line** widget:
+   - **Metrics → Lambda → By Function Name** → tick `Invocations`, `Errors`, `Duration` of `notes-api`.
+3. Add a second widget:
+   - **Metrics → DynamoDB** → `ConsumedReadCapacityUnits`, `ConsumedWriteCapacityUnits` of table `Notes`.
+4. **Save dashboard**.
 
-## Step 2 — Create MatchAnalytics table
+![CloudWatch dashboard](/images/5-Workshop/image31.png)
 
-1. **Create table** `MatchAnalytics`.
-2. Design keys to match analytics queries (e.g. partition by match id or player).
-3. On-demand or provisioned capacity per project choice.
+## Step 2 — Create a Lambda error alarm
 
-![DynamoDB setup](/images/5-Workshop/image31.png)
+1. **CloudWatch → Alarms → All alarms → Create alarm**.
+2. **Select metric → Lambda → By Function Name** → select `Errors` of `notes-api`.
+3. Statistic **Sum**, Period **5 minutes**.
+4. Condition: **Greater than** threshold `0`.
+5. Notification: create SNS topic `cloudnote-alerts`, add your email (confirm the subscription).
+6. **Alarm name:** `notes-api-error-alarm` → create.
 
-## Step 3 — Create MatchAnalytics Lambda role
+## Step 3 — Verify the alarm state
 
-1. Role: `FightingGameMatchAnalyticsRole`.
+- With no errors, the alarm state is **OK** (green).
+- Trigger a deliberate error (e.g. a `GET /notes/{missing}` route) to see it briefly move to **IN ALARM** — this proves the monitoring chain works.
 
-![Created new Match analytic role](/images/5-Workshop/image34.png)
+## Step 4 — Enable CloudTrail
 
-2. Policy: `dynamodb:GetRecords`, `DescribeStream`, `ListStreams` on `ActiveMatches` stream ARN.
+1. **CloudTrail → Trails → Create trail**.
+2. **Trail name:** `cloudnote-audit-trail`.
+3. **Storage location:** create new S3 bucket, e.g. `cloudnote-trail-logs-0205568`.
+4. Keep **Management events = Read/Write: All** → create trail.
 
-![Created active stream reading policy](/images/5-Workshop/image35.png)
+> Management events of the **first trail** are free forever in CloudTrail — create only one trail.
 
-3. Policy: `dynamodb:PutItem` (and read if needed) on `MatchAnalytics`.
+## Step 5 — Verify the trail
 
-![Created role for MatchAnalytic Lambda](/images/5-Workshop/image36.png)
-
-## Step 4 — Deploy FightingGameMatchAnalytics Lambda
-
-1. Upload `backend/lambda-match-analytics.mjs` (or packaged zip from CI).
-2. Runtime: Node.js (match project version).
-3. Attach `FightingGameMatchAnalyticsRole`.
-
-![Created Match Analytic Lambda](/images/5-Workshop/image37.png)
-
-## Step 5 — Event source mapping
-
-1. **Lambda → Configuration → Triggers → Add trigger**.
-2. Source: DynamoDB stream of `ActiveMatches`.
-3. Batch size and starting position per ops preference (typically **LATEST**).
-4. Enable trigger.
-
-## Step 6 — Application code behavior
-
-**Game server (`server.js`):** On disconnect, `markMatchFinished` updates both player rows in `ActiveMatches`:
-
-- `status = finished`
-- `winner`, `endedAt`, `endReason`
-- Player id = Cognito `sub`
-
-**Stream consumer (`lambda-match-analytics.mjs`):**
-
-- On **MODIFY** with `status=finished`, copy record to `MatchAnalytics`.
-- On **REMOVE** (rematch `clearSession`), still archive if finished state was present (race handling).
-
-**Design choice:** Rematch deletes rows from `ActiveMatches`; analytics land in `MatchAnalytics` before delete.
-
-## Step 7 — Verify end-to-end
-
-1. Play a full match until disconnect.
-2. Check `ActiveMatches` rows show `finished`.
-
-![Finished state application to DynamoDB](/images/5-Workshop/image32.png)
-
-![Finished state in DynamoDB (detail)](/images/5-Workshop/image33.png)
-
-3. Confirm corresponding items in `MatchAnalytics`.
-4. CloudWatch Logs for analytics Lambda show successful processing.
-
-![DynamoDB data](/images/5-Workshop/image38.png)
+- **Trail status = Logging**.
+- After some API calls, open the trail's S3 bucket to confirm log files appear.
 
 ## Expected outcome
 
-- Post-match analytics decoupled from real-time game loop
-- Historical data retained after active session cleanup
-- Stream errors visible in Lambda monitoring for replay/debug
+- Metrics for Lambda/DynamoDB visible on the dashboard
+- Alarm fires on Lambda errors with an email notification
+- Every management API call recorded by CloudTrail for audit
+
+## Troubleshooting
+
+| Issue | Action |
+|-------|--------|
+| No metrics on the dashboard | Ensure the function/table is in `ap-southeast-1`; widget shows the right region |
+| Alarm stuck in INSUFFICIENT_DATA | Wait for the first 5-minute period; metric names must match `notes-api` |
+| CloudTrail bucket empty | Status must be **Logging**; allow a few minutes after activity |

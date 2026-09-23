@@ -1,6 +1,6 @@
 ---
 title: "Week 7 Worklog"
-date: 2026-06-16
+date: 2026-09-12
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -8,25 +8,23 @@ pre: " <b> 1.7. </b> "
 
 ### Week 7 Objectives:
 
-* Complete the game model in LeopardJS and run it locally.
-* Begin implementing authentication integrated with netcode.
+* Complete the CloudNote application: expose the APIs through API Gateway, host the frontend on S3.
+* Add monitoring, auditing, and carry out the final end-to-end demo.
 
-**Period:** 16/06/2026 – 22/06/2026
+**Period:** 12/09/2026 – 14/09/2026
 
 ### Tasks to be carried out this week:
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | ---------- | --------------- | ------------------ |
-| 2 | - Migrate Scratch game logic to LeopardJS project structure | 16/06/2026 | 16/06/2026 | LeopardJS docs |
-| 3 | - Implement fighter sprites, animations, and input handling in LeopardJS | 17/06/2026 | 17/06/2026 | |
-| 4 | - Run and test the game locally; fix rendering and collision issues | 18/06/2026 | 18/06/2026 | |
-| 5 | - Study netcode architecture: WebSocket connections, player slots, state sync | 19/06/2026 | 19/06/2026 | |
-| 6 | - **Sketch:** Begin authentication flow design (login → session → match join) <br> - Integrate initial auth hooks with netcode module | 20/06/2026 | 20/06/2026 | |
+| 2 | - Create the `notes-http-api` HTTP API and CORS configuration | 12/09/2026 | 12/09/2026 | CloudNote workshop |
+| 3 | - Host the app frontend on S3 static website; verify the full flow (create, view, delete notes) | 13/09/2026 | 13/09/2026 | |
+| 4 | - Add CloudWatch dashboard/alarm and CloudTrail trail; final summary of the 7-week internship | 14/09/2026 | 14/09/2026 | |
 
 ### Week 7 Achievements:
 
-* Successfully ported the Scratch prototype to LeopardJS and ran it on a local development machine.
-* Implemented core gameplay: two fighters, attack combos, health bars, and round outcomes.
-* Designed the authentication + netcode integration sketch for team handoff.
-* Understood WebSocket-based multiplayer patterns required for real-time fighting gameplay.
-* Prepared the client codebase for team collaboration and CI/CD setup in the following week.
+* Exposed the `notes-api` Lambda through the **API Gateway HTTP API** and enabled CORS for the browser frontend.
+* Hosted the CloudNote frontend on S3 static website hosting and validated the full end-to-end flow.
+* Set up a CloudWatch dashboard and alarm plus a CloudTrail audit trail to observe and audit the workload.
+* Completed a full end-to-end demo of the serverless notes application on AWS Free Tier.
+* Wrapped up the 7-week internship covering AWS fundamentals, labs, storage, monitoring, CLI operations and the CloudNote capstone.

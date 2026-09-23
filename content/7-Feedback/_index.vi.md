@@ -20,7 +20,7 @@ Mentor hướng dẫn rõ ràng về quyết định kiến trúc, theo dõi ti�
 
 **3. Sự phù hợp giữa công việc và chuyên ngành học**
 
-Dự án capstone fighting-game phù hợp với ngành **Mạng Máy Tính / Công Nghệ Thông Tin**, đồng thời mở rộng sang serverless, quản lý fleet Spot, GitOps và VPC endpoints — những mảng chưa được đào sâu tại trường. Công việc kết nối lý thuyết với thực hành AWS.
+Dự án capstone CloudNote phù hợp với ngành **Mạng Máy Tính / Công Nghệ Thông Tin**, đồng thời mở rộng sang serverless, mô hình dữ liệu DynamoDB, tích hợp API Gateway, giám sát CloudWatch và kiểm toán CloudTrail — những mảng chưa được đào sâu tại trường. Công việc kết nối lý thuyết với thực hành AWS.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
@@ -32,13 +32,13 @@ Văn hóa chương trình nhấn mạnh học hỏi công khai, chia sẻ tại 
 
 **6. Chính sách / phúc lợi cho thực tập sinh**
 
-Lộ trình 12 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi nội bộ và sự kiện cộng đồng bổ trợ tốt cho tự học dự án.
+Lộ trình 7 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi nội bộ và sự kiện cộng đồng bổ trợ tốt cho tự học dự án.
 
 ---
 
 ### Một số suy ngẫm thêm
 
-**Điều em hài lòng nhất:** Xây dựng hạ tầng end-to-end cho fighting-game — từ EC2 warm pool, S3 hosting đến OIDC, CodeDeploy, async analytics và VPC MatchMaker private — và thấy pipeline GitHub Actions chạy thành công.
+**Điều em hài lòng nhất:** Xây dựng hạ tầng serverless end-to-end cho CloudNote — từ DynamoDB và Lambda qua API Gateway, S3 static hosting, CloudWatch dashboard đến CloudTrail — và thấy ứng dụng ghi chú full-stack hoạt động trực tiếp trên trình duyệt.
 
 **Điều cần cải thiện cho thực tập sinh sau:** Thống nhất vai trò trong team capstone sớm hơn và có checklist tích hợp chung sẽ giảm ma sát ở giai đoạn cuối.
 

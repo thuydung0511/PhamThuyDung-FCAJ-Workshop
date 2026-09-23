@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 4"
-date: 2026-05-26
+date: 2026-08-22
 weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
@@ -11,17 +11,17 @@ pre: " <b> 1.4. </b> "
 * Đi sâu vào các dịch vụ lưu trữ dữ liệu của AWS.
 * Thực hành tạo và cấu hình giải pháp lưu trữ cho các use case khác nhau.
 
-**Thời gian:** 26/05/2026 – 01/06/2026
+**Thời gian:** 22/08/2026 – 28/08/2026
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | ------------ | --------------- | -------------- |
-| 2 | - Học S3 storage class, versioning và lifecycle policy | 26/05/2026 | 26/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Học EBS vs EFS: block vs file storage, use case | 27/05/2026 | 27/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Khám phá DynamoDB: bảng, partition, primary key, on-demand vs provisioned | 28/05/2026 | 28/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - **Lab:** Tạo bảng DynamoDB, insert/query qua console và CLI | 29/05/2026 | 29/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | - **Lab:** Cấu hình S3 versioning và thử khôi phục object <br> - So sánh lựa chọn lưu trữ cho dự án sắp tới | 30/05/2026 | 30/05/2026 | |
+| 2 | - Học S3 storage class, versioning và lifecycle policy | 22/08/2026 | 22/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Học EBS vs EFS: block vs file storage, use case | 23/08/2026 | 23/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Khám phá DynamoDB: bảng, partition, primary key, on-demand vs provisioned | 24/08/2026 | 24/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - **Lab:** Tạo bảng DynamoDB, insert/query qua console và CLI | 25/08/2026 | 25/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 6 | - **Lab:** Cấu hình S3 versioning và thử khôi phục object <br> - So sánh lựa chọn lưu trữ cho dự án sắp tới | 26/08/2026 | 26/08/2026 | |
 
 ### Kết quả đạt được tuần 4:
 

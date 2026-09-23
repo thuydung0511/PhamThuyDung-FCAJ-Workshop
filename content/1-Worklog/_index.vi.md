@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**Trong trang này** là nhật ký công việc thực tập **First Cloud AI Journey (FCAJ)** tại **Công ty TNHH Amazon Web Services Việt Nam**. Thời gian thực tập **12 tuần** từ **05/05/2026** đến **29/07/2026**, bao gồm kiến thức AWS cơ bản, dự án game đối kháng, workshop và hoàn thiện báo cáo.
+**Trong trang này** là nhật ký công việc thực tập **First Cloud AI Journey (FCAJ)** tại **Công ty TNHH Amazon Web Services Việt Nam**. Thời gian thực tập **7 tuần** từ **01/08/2026** đến **14/09/2026**, bao gồm kiến thức AWS cơ bản, thực hành lab, dịch vụ lưu trữ, giám sát và thao tác AWS CLI.
 
-**Sinh viên:** Lê Thành Nhơn (MSSV: 2280602244)  
+**Sinh viên:** Phạm Thùy Dung (MSSV: 0205568)  
 **Cán bộ hướng dẫn tại đơn vị TT:** Nguyễn Gia Hưng – hunggia@amazon.com.vn  
 **Giảng viên hướng dẫn tại trường:** Nguyễn Lễ Văn – nl.van@hutech.edu.vn
 
@@ -22,16 +22,6 @@ pre: " <b> 1. </b> "
 
 **Tuần 5:** [Giám sát CloudWatch và thao tác AWS CLI](1.5-week5/)
 
-**Tuần 6:** [Bắt đầu dự án — prototype game với Scratch](1.6-week6/)
+**Tuần 6:** [Bắt đầu dự án — phần lõi serverless CloudNote](1.6-week6/)
 
-**Tuần 7:** [Hoàn thiện mô hình game LeopardJS và Authentication](1.7-week7/)
-
-**Tuần 8:** [Handoff client và triển khai CI/CD với GitHub Actions](1.8-week8/)
-
-**Tuần 9:** [IAM Permission Boundaries và kiểm tra CodeDeploy](1.9-week9/)
-
-**Tuần 10:** [Hoàn thành đồ án và bắt đầu viết báo cáo](1.10-week10/)
-
-**Tuần 11:** [Hoàn thành workshop và deploy website báo cáo](1.11-week11/)
-
-**Tuần 12:** [Viết báo cáo thực tập và bài thu hoạch sự kiện](1.12-week12/)
+**Tuần 7:** [Hoàn thiện ứng dụng, giám sát và demo cuối cùng](1.7-week7/)

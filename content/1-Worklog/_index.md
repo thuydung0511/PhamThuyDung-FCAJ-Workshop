@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**On this page**, you will find my internship worklog for the **First Cloud AI Journey (FCAJ)** program at **Amazon Web Services Vietnam**. The internship ran for **12 weeks** from **05/05/2026** to **30/07/2026**, covering AWS fundamentals, a capstone fighting-game project, workshop labs, and final report delivery.
+**On this page**, you will find my internship worklog for the **First Cloud AI Journey (FCAJ)** program at **Amazon Web Services Vietnam**. The internship ran for **7 weeks** from **01/08/2026** to **14/09/2026**, covering AWS fundamentals, hands-on labs, storage services, monitoring and CLI operations.
 
-**Student:** Lê Thành Nhơn (MSSV: 2280602244)  
+**Student:** Phạm Thùy Dung (MSSV: 0205568)  
 **Mentor:** Nguyễn Gia Hưng – hunggia@amazon.com.vn  
 **University advisor:** Nguyễn Lễ Văn – nl.van@hutech.edu.vn
 
@@ -22,16 +22,6 @@ pre: " <b> 1. </b> "
 
 **Week 5:** [CloudWatch monitoring and AWS CLI operations](1.5-week5/)
 
-**Week 6:** [Starting the capstone project — Scratch game prototype](1.6-week6/)
+**Week 6:** [Starting the capstone project — CloudNote serverless core](1.6-week6/)
 
-**Week 7:** [LeopardJS game model and authentication with netcode](1.7-week7/)
-
-**Week 8:** [Client handoff and CI/CD with GitHub Actions](1.8-week8/)
-
-**Week 9:** [IAM permission boundaries and CodeDeploy validation](1.9-week9/)
-
-**Week 10:** [Completing the capstone and starting the report](1.10-week10/)
-
-**Week 11:** [Workshop completion and Hugo site deployment](1.11-week11/)
-
-**Week 12:** [Final report and event recap article](1.12-week12/)
+**Week 7:** [Completing the app, monitoring and final demo](1.7-week7/)

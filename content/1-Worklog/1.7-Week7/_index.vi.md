@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 7"
-date: 2026-06-16
+date: 2026-09-12
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -8,25 +8,23 @@ pre: " <b> 1.7. </b> "
 
 ### Mục tiêu tuần 7:
 
-* Hoàn thiện mô hình game trên LeopardJS và chạy local.
-* Bắt đầu triển khai Authentication tích hợp với netcode.
+* Hoàn thiện ứng dụng CloudNote: expose API qua API Gateway, host frontend trên S3.
+* Bổ sung giám sát, kiểm toán và thực hiện demo end-to-end cuối cùng.
 
-**Thời gian:** 16/06/2026 – 22/06/2026
+**Thời gian:** 12/09/2026 – 14/09/2026
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | ------------ | --------------- | -------------- |
-| 2 | - Chuyển logic game từ Scratch sang cấu trúc project LeopardJS | 16/06/2026 | 16/06/2026 | Tài liệu LeopardJS |
-| 3 | - Triển khai sprite nhân vật, animation và xử lý input trong LeopardJS | 17/06/2026 | 17/06/2026 | |
-| 4 | - Chạy và kiểm thử game local; sửa lỗi render và va chạm | 18/06/2026 | 18/06/2026 | |
-| 5 | - Học kiến trúc netcode: WebSocket, player slot, đồng bộ trạng thái | 19/06/2026 | 19/06/2026 | |
-| 6 | - **Phác thảo:** Thiết kế luồng auth (login → session → tham gia trận) <br> - Tích hợp hook auth ban đầu với module netcode | 20/06/2026 | 20/06/2026 | |
+| 2 | - Tạo API `notes-http-api` (HTTP API) và cấu hình CORS | 12/09/2026 | 12/09/2026 | Workshop CloudNote |
+| 3 | - Host frontend ứng dụng trên S3 static website; kiểm chứng luồng đầy đủ (tạo, xem, xóa ghi chú) | 13/09/2026 | 13/09/2026 | |
+| 4 | - Thêm CloudWatch dashboard/alarm và CloudTrail trail; tổng kết kết quả 7 tuần thực tập | 14/09/2026 | 14/09/2026 | |
 
 ### Kết quả đạt được tuần 7:
 
-* Chuyển thành công prototype Scratch sang LeopardJS và chạy trên máy phát triển.
-* Triển khai gameplay cốt lõi: hai nhân vật, combo tấn công, thanh máu và kết quả ván đấu.
-* Thiết kế phác thảo tích hợp authentication + netcode để handoff cho team.
-* Hiểu mô hình multiplayer real-time qua WebSocket cho game đối kháng.
-* Chuẩn bị codebase client cho cộng tác team và thiết lập CI/CD ở tuần sau.
+* Expose Lambda `notes-api` qua **API Gateway HTTP API** và bật CORS cho frontend trên trình duyệt.
+* Host frontend CloudNote trên S3 static website hosting và kiểm chứng luồng end-to-end đầy đủ.
+* Thiết lập CloudWatch dashboard và alarm cùng CloudTrail trail để quan sát và kiểm toán workload.
+* Hoàn thành demo end-to-end ứng dụng ghi chú serverless trên AWS Free Tier.
+* Tổng kết hành trình 7 tuần thực tập gồm AWS cơ bản, thực hành lab, lưu trữ, giám sát, thao tác CLI và capstone CloudNote.

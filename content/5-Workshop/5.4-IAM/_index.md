@@ -8,65 +8,69 @@ pre: " <b> 5.4. </b> "
 
 ## Goal
 
-Configure IAM so **MatchMaker Lambda**, **EC2 game servers**, **GitHub Actions**, and **CodeDeploy** have least-privilege access to DynamoDB, EC2, S3, and deploy APIs.
+Configure IAM so the **CloudNote** serverless app has least-privilege access: the `notes-api` Lambda can read/write the `Notes` table and log to CloudWatch; the practice user never uses the root account.
 
-## Step 1 — MatchMaker Lambda execution role
+## Step 1 — IAM practice user (never use root)
 
-Grant the MatchMaker Lambda role permissions to:
+1. **IAM → Users → Create user**. User name: `cloudnote-dev`.
+2. Choose **Attach policies directly** and attach the practice policies (wide scope for learning, not for production):
+   - `AmazonS3FullAccess`, `AmazonDynamoDBFullAccess`, `AWSLambda_FullAccess`
+   - `AmazonAPIGatewayAdministrator`, `IAMFullAccess`, `CloudWatchFullAccess`, `AWSCloudTrail_FullAccess`
+   - (Part B only) `AmazonVPCFullAccess`, `AmazonEC2FullAccess`, `ElasticLoadBalancingFullAccess`
+3. Enable **Console access** for this user and log out of root.
+4. Use `cloudnote-dev` for the entire workshop.
 
-- **DynamoDB:** read/write `MatchmakingQueue`, `ActiveMatches` (and related tables).
-- **EC2:** `DescribeInstances` (discover `Role=FightingGameServer` hosts); optionally `AuthorizeSecurityGroupIngress` / `RevokeSecurityGroupIngress` for dynamic player IP rules.
-- **CloudWatch Logs:** create log streams for Lambda logging.
-- **VPC (later):** attach `AWSLambdaVPCAccessExecutionRole` when moving Lambda to private subnets ([5.8](5.8-VPC-MatchMaker/)).
+## Step 2 — Lambda execution role
 
-## Step 2 — FightingGameServerInstanceRole (EC2)
+1. **IAM → Roles → Create role** → AWS service → Lambda.
+2. Attach `AWSLambdaBasicExecutionRole` (write Lambda logs to CloudWatch).
+3. Role name: `LambdaNotesExecutionRole`.
+4. Add an **inline policy** `NotesTableAccess` scoped to the `Notes` table:
 
-1. **IAM → Roles → Create role** → AWS service → EC2.
-2. Name: `FightingGameServerInstanceRole`.
-3. Attach policies for:
-   - **S3 read** on assets bucket (pull server binary/config at boot).
-   - **DynamoDB write** on `ActiveMatches` for `markMatchFinished` (status, winner, timestamps) after async processing was added.
-   - **CloudWatch Logs** (optional agent logs).
-4. Create **instance profile** and attach to launch template ([5.2](5.2-EC2-Fleet/)).
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Scan",
+        "dynamodb:Query"
+      ],
+      "Resource": "arn:aws:dynamodb:ap-southeast-1:<ACCOUNT_ID>:table/Notes"
+    }
+  ]
+}
+```
 
-![Roles for FightingGameServerInstanceRole](/images/5-Workshop/image15.png)
-
-![FightingGameServerInstanceRole policies](/images/5-Workshop/image16.png)
-
-### Modify IAM role
-
-Update the instance role when deploy and match-finish features require additional DynamoDB or CodeDeploy permissions.
-
-![Modify IAM role](/images/5-Workshop/image17.png)
+Replace `<ACCOUNT_ID>` with your 12-digit account ID.
 
 ## Step 3 — GitHub Actions deploy role
 
-Role name used in CI: `GitHubActionsFightingGameDeploy`.
+Role name used in CI: `GitHubActionsCloudNoteDeploy`.
 
-**Trust policy:** federated principal `token.actions.githubusercontent.com` (OIDC), scoped to repo `Nothingtoread/fighting-game`.
+**Trust policy:** federated principal `token.actions.githubusercontent.com` (OIDC), scoped to the CloudNote repository (`thuydung0511/CloudNote` — will be updated soon).
 
 **Permissions policy** (summary):
 
-- `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket` on assets bucket.
-- `lambda:UpdateFunctionCode`, `lambda:PublishVersion`, `lambda:UpdateAlias` on MatchMaker function.
-- CodeDeploy: `CreateDeployment`, `GetDeployment`, `ListDeployments`, `GetApplicationRevision`, register revision.
-- `iam:PassRole` for CodeDeploy service roles as needed.
+- `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket` on the app bucket.
+- `lambda:UpdateFunctionCode`, `lambda:PublishVersion` on `notes-api`.
+- `dynamodb:GetItem`, `dynamodb:PutItem` as needed for integration tests.
+- `iam:PassRole` where a service role is required by deploy tooling.
 
-## Step 4 — CodeDeploy service roles
+## Step 4 — CodeDeploy / EC2 service roles (Part B)
 
 | Role | Used for |
 |------|----------|
-| Lambda CodeDeploy service role | Canary/linear deployments on MatchMaker alias |
-| `CodeDeployServiceRoleForEC2` with `AWSCodeDeployRole` | EC2 deployment group (must **not** reuse Lambda service role) |
-
-## Step 5 — MatchAnalytics Lambda role
-
-1. Create `FightingGameMatchAnalyticsRole`.
-2. Attach policy for **DynamoDB Streams** read on `ActiveMatches` (`NEW_AND_OLD_IMAGES`).
-3. Grant write to `MatchAnalytics` table.
+| EC2 instance profile | Httpd web tier instances pulling content / registering with the target group |
+| `AWSCodeDeployRole` (if used) | Deploying to the EC2 fleet behind the ALB |
 
 ## Verification
 
-- EC2 instance can pull from S3 and write match finish rows to DynamoDB.
-- GitHub Actions workflow assumes deploy role without static access keys.
-- CodeDeploy deployment group uses correct service role per compute type.
+- `cloudnote-dev` can perform every Part A step without touching the root account.
+- `LambdaNotesExecutionRole` has exactly two policies: `AWSLambdaBasicExecutionRole` + `NotesTableAccess`.
+- GitHub Actions workflow assumes the deploy role without static access keys.

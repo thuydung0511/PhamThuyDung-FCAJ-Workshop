@@ -33,11 +33,13 @@ Authenticate **GitHub Actions** to AWS using **OIDC**—no long-lived `AWS_ACCES
   "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
 },
 "StringLike": {
-  "token.actions.githubusercontent.com:sub": "repo:Nothingtoread/fighting-game:*"
+  "token.actions.githubusercontent.com:sub": "repo:thuydung0511/CloudNote:*"
 }
 ```
 
-4. Role name: `GitHubActionsFightingGameDeploy` (or your chosen name).
+> Repo scope is temporary — the CloudNote repository link will be updated soon.
+
+4. Role name: `GitHubActionsCloudNoteDeploy` (or your chosen name).
 5. Attach permissions policy from [5.4 IAM](5.4-IAM/).
 
 ![Attach permissions policy to role](/images/5-Workshop/image11.png)
@@ -52,10 +54,8 @@ In **GitHub → Settings → Secrets and variables → Actions**, add:
 |--------|---------|
 | `AWS_ROLE_ARN` | ARN of the OIDC role |
 | `AWS_REGION` | `ap-southeast-1` |
-| `ASSETS_BUCKET` | S3 bucket name |
-| `COGNITO_*` | User pool / client IDs for generated `config.js` |
-| `MATCHMAKER_API_BASE` | API Gateway base URL |
-| `WS_SERVER` | WebSocket server hint for client |
+| `APP_BUCKET` | S3 bucket name for the CloudNote frontend |
+| `API_BASE_URL` | API Gateway base URL (`/notes`) |
 
 Do **not** store static AWS access keys.
 
@@ -82,11 +82,11 @@ permissions:
 
 1. Push a commit to trigger the workflow.
 2. Confirm **Configure AWS credentials (OIDC)** step succeeds.
-3. Confirm the full pipeline completes — MatchMaker Lambda deploy, S3 client sync, and game-server deploy via SSM (this was the **first CI/CD path before CodeDeploy** was added in [5.6](5.6-CodeDeploy/)).
+3. Confirm the full pipeline completes — Lambda deploy + S3 frontend sync.
 
-![First CI/CD pipeline succeeded via OIDC (pre-CodeDeploy)](/images/5-Workshop/image18.png)
+![CI pipeline succeeded via OIDC](/images/5-Workshop/image18.png)
 
-![MatchMaker `live` alias created after deploy](/images/5-Workshop/image19.png)
+![Lambda alias created after deploy](/images/5-Workshop/image19.png)
 
 ## Expected outcome
 

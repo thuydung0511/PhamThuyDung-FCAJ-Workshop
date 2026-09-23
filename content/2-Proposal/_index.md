@@ -1,22 +1,22 @@
 ---
 title: "Proposal"
-date: 2026-05-01
+date: 2026-08-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# Serverless & Spot Instance Backend Architecture for Live-Service Games on AWS
+# CloudNote — Serverless Notes Application on AWS
 
-## High-Performance, Scalable, and Cost-Optimized Cloud Infrastructure for Multiplayer Games
+## A Full-Stack, Cost-Optimized Serverless Reference Application Built on AWS Free Tier
 
 ---
 
 ### 1. Executive Summary
 
-This project presents a cloud-native backend architecture designed for live-service multiplayer games on Amazon Web Services (AWS). Instead of maintaining an expensive dedicated server fleet running 24/7 regardless of player demand, this architecture provisions compute resources dynamically **only when actually needed**: during player authentication, matchmaking, and active live game sessions.
+**CloudNote** is a full-stack serverless notes application built as the Capstone Project for the *First Cloud AI Journey (FCAJ)* internship at Amazon Web Services Vietnam. The application lets users open a static website (hosted on **S3**), view the list of notes, and create, edit or delete notes entirely through the browser. All data is stored and processed by serverless AWS services — no servers to manage.
 
-All metagame components—including authentication, asset distribution, matchmaking, and post-match analytics—operate on a 100% **Serverless** architecture. The live game server sessions run within an **EC2 Spot Fleet** inside a dedicated, isolated VPC network boundary and are spun up dynamically by the Matchmaker service. Deployments and updates strictly follow **GitOps** practices, ensuring automated, zero-downtime releases without manual code execution on production.
+The project follows a core principle: *run everything serverless, understand each step, and stay within the AWS Free Tier*. The core delivers a production-shaped path — IAM, DynamoDB, Lambda, API Gateway, S3 static hosting, CloudWatch monitoring and CloudTrail auditing — while a bonus web tier (Part B) demonstrates horizontal scaling with VPC, EC2 Launch Templates, an Application Load Balancer and Auto Scaling.
 
 ---
 
@@ -24,116 +24,111 @@ All metagame components—including authentication, asset distribution, matchmak
 
 #### What's the Problem?
 
-Traditional multiplayer game server architectures rely on dedicated EC2 instance fleets running continuously 24/7. During off-peak hours or low traffic periods, game studios suffer from massive idle compute costs. Furthermore, manual code deployments present severe operational risks, such as match interruptions, long deployment windows, and complex manual rollbacks. Keeping game server ports permanently open to the internet also exposes infrastructure to security threats and DDoS attacks.
+Building and demonstrating a "real" application on the cloud usually requires understanding many moving parts: identity and access, a data store, a compute layer, an API surface, frontend hosting, monitoring and auditing. Beginners often either stay with toy examples or jump straight to containers/Kubernetes without mastering the fundamentals.
 
 #### The Solution
 
-This architecture follows a core design rule: **Serverless for everything except live game sessions**.
+CloudNote is deliberately simple in scope but complete in its lifecycle. One **Lambda** function exposes CRUD operations through an **API Gateway HTTP API**, backed by a **DynamoDB** table. A static frontend on **S3** calls the API. **CloudWatch** and **CloudTrail** provide observability and auditability. A bonus **VPC + EC2 + ALB + Auto Scaling** web tier adds the classic scale-out web serving pattern.
 
-- Low-latency metagame tasks (Auth, Asset Downloads, Matchmaking, Analytics) are handed off to AWS Serverless services (Cognito, API Gateway, Lambda, DynamoDB).
-- Live game sessions run on an EC2 Spot Instance fleet (Graviton ARM64) inside a private/public VPC structure.
-- Access to game servers is protected by dynamic Security Group rules managed by the Matchmaker Lambda, opening ports only for active players during a match and closing them immediately afterwards.
-- Deployment is fully automated via GitHub Actions and AWS CodeDeploy using GitOps principles.
+Benefits:
 
-#### Benefits and Return on Investment (ROI)
-
-- **Up to 80% Cost Reduction**: Eliminates idle server expenses by using EC2 Spot Instances combined with ARM64 Graviton processors, running compute only when matches occur.
-- **Zero Egress & NAT Costs**: Eliminates NAT Gateway fees by routing internal Lambda traffic to DynamoDB and EC2 APIs via private VPC Endpoints.
-- **Automated Zero-Downtime Deployment**: Blue/Green deployment via CodeDeploy allows gradual traffic shifting and instant rollback if a release fails, preventing match disruptions.
-- **Enhanced Security**: Enforces strict trust boundaries, short-lived scoped IAM credentials for asset downloads, and dynamic Security Group management for game ports.
+- **100% Serverless Core**: No EC2 to manage for the main application; Lambda and DynamoDB scale automatically.
+- **Free Tier Friendly**: Everything in Part A is $0 within Free Tier limits; part B costs ~$0.07–0.15 for a 3-hour ALB window.
+- **Fundamentals Covered**: IAM least-privilege, NoSQL data modeling, API design, CORS, monitoring, auditing, and horizontal scaling.
+- **Reusable Blueprint**: The same shape applies to any tiny API app (to-do list, surveys, personal blog backend).
 
 ---
 
 ### 3. Solution Architecture
 
-The architecture is divided into four distinct execution flows, each featuring its own trigger mechanisms and security trust boundaries.
+The main flow is fully serverless; the bonus lab adds a traditional scale-out web tier.
 
-![Live-Service Game Backend Architecture](/images/2-Proposal/architecture.png)
+![CloudNote Serverless Architecture](/images/2-Proposal/architecture.png)
 
-#### Architectural Flow Breakdown
+#### Main Flow (Part A — Serverless Core)
 
-##### **Flow C: GitOps Deployment Loop (CI/CD Pipeline)**
+1. The user opens the static website URL on **S3** and receives `index.html` + `app.js`.
+2. `app.js` calls the API via `fetch` to the **API Gateway HTTP API** endpoint (`/notes`).
+3. **API Gateway** routes requests to the **Lambda** function `notes-api` (Python 3.12).
+4. **Lambda** uses its attached IAM Role (`LambdaNotesExecutionRole`) to read/write the **DynamoDB** table `Notes`.
+5. The result is returned through API Gateway and rendered in the browser.
+6. **CloudWatch** records logs and raises alarms on errors; **CloudTrail** records every API call in the account for auditing.
 
-- Runs strictly during deployment and never interferes with live, ongoing game sessions.
-- Developers push code and Infrastructure as Code (IaC) to Git. The GitOps pipeline (GitHub Actions) builds artifacts and triggers **AWS CodeDeploy**.
-- CodeDeploy gradually shifts traffic to the new **AWS Lambda** version alias and updates AMI/Launch Templates for the **EC2 Auto Scaling Group (ASG)** Spot fleet.
-- Simultaneously, the pipeline uploads client builds, patches, and server bundles to an **Amazon S3** asset bucket—serving as the unified artifact repository for both clients and EC2 instances.
-- If a deployment error occurs, traffic shifts back automatically without interrupting running matchmaking services.
+#### Bonus Flow (Part B — Web Tier)
 
-##### **Flow A: Player Auth & Asset Distribution**
-
-- Players log in via **Cognito User Pool** (A1) and receive a JWT (A2).
-- **Cognito Identity Pool** exchanges the JWT for temporary, prefix-scoped IAM credentials (A3).
-- Game clients use these temporary credentials to download assets directly from S3 (A4): client builds, patches, and launcher files.
-- The JWT token is passed to Flow R (A5)—the single intersection point between Auth and Matchmaking—allowing **API Gateway** to authorize incoming requests.
-
-##### **Flow R: Synchronous Matchmaking & Session Provisioning**
-
-- The client sends a matchmaking request via **Amazon CloudFront** (protected by **AWS WAF**) to **Amazon API Gateway** (R1).
-- After Cognito Authorizer validates the JWT, **Matchmaker Lambda** (located in a private subnet) executes (R2):
-  1. Writes match state to **Amazon DynamoDB** via a **VPC Gateway Endpoint** (R4).
-  2. Calls the EC2 control plane via a private **VPC Interface Endpoint** (R3) to request a warm instance from the ASG Spot fleet (G1).
-  3. Assigns a game room and configures dynamic **Security Group** rules specifically for the player's IP address.
-- Matchmaker Lambda returns the server IP and port to the client. The client connects directly to the game instance via **Internet Gateway** (G3).
-- When ASG launches a new EC2 instance, User Data scripts execute at boot, using an **IAM Instance Profile** to pull the latest server binary, config, and patch from S3 (G4). The instance initializes and immediately accepts assigned players.
-
-##### **Flow E: Asynchronous Post-Match Processing & Analytics**
-
-- Once a match concludes, results are written to DynamoDB.
-- **DynamoDB Streams** automatically trigger a background **Lambda function** (E2) to capture post-match logs, calculate player stats, and push events to the analytics store (E3).
-- This flow is completely decoupled from Flow R, ensuring post-match processing never impacts matchmaking latency.
+- A custom **VPC** with 2 public subnets across 2 Availability Zones.
+- An **EC2 Launch Template** (Amazon Linux 2023, t2.micro) with a User Data script that serves an instance-ID page.
+- A **Target Group + Application Load Balancer (ALB)** and an **Auto Scaling Group** that keep 1–2 web instances running; refreshing the ALB DNS name alternates the displayed Instance ID.
 
 #### AWS Services Used
 
-- **Amazon Cognito**: User Pool (Authentication) & Identity Pool (Authorization / Temp IAM Credentials).
-- **AWS WAF & Amazon CloudFront**: Edge security, DDoS protection, and global request routing.
-- **Amazon API Gateway**: Serverless HTTP API endpoint handling player requests.
-- **AWS Lambda**: Executes Matchmaker logic, CodeDeploy traffic management, and background log processing.
-- **Amazon DynamoDB & DynamoDB Streams**: Single-table design for match state & real-time log capturing.
-- **Amazon EC2 Spot Fleet (Graviton ARM64)**: Cost-effective, high-performance compute fleet for live game sessions.
-- **AWS CodeDeploy & GitHub Actions**: Fully automated GitOps deployment pipeline.
-- **Amazon S3 & AWS KMS**: Centralized asset repository with data-at-rest encryption.
-- **VPC Endpoints (Gateway & Interface)**: Private network connections avoiding public internet egress.
+- **IAM**: practice user `cloudnote-dev`; execution role `LambdaNotesExecutionRole` + inline policy `NotesTableAccess`.
+- **Amazon DynamoDB**: table `Notes` (partition key `noteId`, on-demand capacity).
+- **AWS Lambda**: `notes-api` — a single CRUD function (GET/POST/PUT/DELETE).
+- **Amazon API Gateway**: HTTP API `notes-http-api` with routes `GET/POST /notes` and `PUT/DELETE /notes/{noteId}`.
+- **Amazon S3**: bucket `cloudnote-app-0205568-2026` — static website hosting + public read bucket policy.
+- **Amazon CloudWatch**: dashboard `CloudNote-Dashboard`; alarm `notes-api-error-alarm`.
+- **AWS CloudTrail**: trail `cloudnote-audit-trail` (management events).
+- **VPC / EC2 / ELB / Auto Scaling** (Part B): `cloudnote-vpc`, `cloudnote-web-template`, `cloudnote-tg`, `cloudnote-alb`, `cloudnote-asg`.
 
 ---
 
 ### 4. Technical Implementation
 
-#### Implementation Phases
+#### Implementation Steps (Part A)
 
-1. **Phase 1: Architecture & Security Boundary Definition (Month 1)**  
-   Design VPC subnets, route tables, IAM roles, security group automation, and KMS keys.
-2. **Phase 2: Core Serverless Metagame & Auth Setup (Month 1-2)**  
-   Implement Cognito User/Identity Pools, S3 asset bucket policies, API Gateway, and DynamoDB single-table schema.
-3. **Phase 3: Matchmaker & EC2 Spot Automation (Month 2)**  
-   Develop Matchmaker Lambda in private subnets, configure ASG Launch Templates with Graviton ARM64, and create User Data boot scripts.
-4. **Phase 4: GitOps CI/CD & Asynchronous Analytics (Month 3)**  
-   Set up GitHub Actions workflows, CodeDeploy Blue/Green deployment hooks, DynamoDB Streams for post-match processing, and conduct load testing.
+1. **A0 — IAM user**: create `cloudnote-dev` with console access; attach read/execute-focused policies; never use root.
+2. **A1 — DynamoDB**: create table `Notes`, partition key `noteId` (String), **On-demand** capacity.
+3. **A2 — IAM Role**: create `LambdaNotesExecutionRole` with `AWSLambdaBasicExecutionRole` + inline `NotesTableAccess` (DynamoDB CRUD scoped to the `Notes` table ARN).
+4. **A3 — Lambda**: create `notes-api` (Python 3.12, x86_64), attach the role, implement CRUD, test a POST from the console.
+5. **A4 — API Gateway**: build HTTP API `notes-http-api`, add 4 routes to `notes-api`, enable CORS, note the Invoke URL.
+6. **A5 — API test**: verify `GET /notes` returns JSON; test POST via browser/CloudShell curl.
+7. **A6 — S3 hosting**: create bucket `cloudnote-app-0205568-2026`, enable static website hosting, attach public-read bucket policy, upload `index.html` (frontend calls the Invoke URL).
+8. **A7 — E2E test**: open the website endpoint, create and delete a note in the browser.
+9. **A8 — CloudWatch**: build dashboard with Lambda `Invocations/Errors/Duration` + DynamoDB `Consumed*Capacity`, create alarm on Lambda Errors.
+10. **A9 — CloudTrail**: create trail `cloudnote-audit-trail` (management events, new S3 bucket for logs).
+
+#### Implementation Steps (Part B — optional)
+
+B1 custom VPC (2 AZ, 2 public subnets, no NAT) → B2 launch template `cloudnote-web-template` → B3 target group `cloudnote-tg` + ALB `cloudnote-alb` → B4 ASG `cloudnote-asg` (desired 2, min 1, max 2, ELB health checks) → B5 verify load balancing alternates instance IDs → B6 (advanced) optional Docker + ECS Fargate.
 
 #### Technical Requirements
 
-- **Infrastructure as Code (IaC)**: AWS CDK / Terraform for full environment reproducibility.
-- **Game Server Build**: Dockerized / binary game server compiled for Graviton (ARM64 Linux).
-- **Security Standards**: TLS 1.3 in transit, KMS encryption at rest, principle of least privilege for IAM instance roles and temp user credentials.
+- AWS Console only (no CLI required); region **ap-southeast-1 (Singapore)**.
+- MFA enabled on the root account.
+- A new (or low-traffic) account to stay inside Free Tier limits.
 
 ---
 
 ### 5. Timeline & Milestones
 
-- **Month 1**: System architecture design, VPC/Network topology setup, and IAM security boundaries.
-- **Month 2**: Serverless matchmaking development, Cognito integration, and EC2 Spot ASG automation.
-- **Month 3**: GitOps pipeline implementation, load & stress testing, performance tuning, and final deployment.
+- **Week 1–2**: AWS account setup, MFA, IAM, EC2/VPC labs (foundation for Part B).
+- **Week 3**: Explore services, deploy an app on S3 and EC2.
+- **Week 4**: Storage (S3, DynamoDB, EBS).
+- **Week 5**: CloudWatch monitoring + AWS CLI.
+- **Week 6**: Capstone Part A core — DynamoDB, Lambda, IAM role, CRUD backend.
+- **Week 7**: API Gateway + CORS, S3 frontend, end-to-end demo, CloudWatch + CloudTrail, (optional) Part B web tier, final report.
 
 ---
 
 ### 6. Budget Estimation & Cost Optimization
 
-#### Cost Breakdown Highlights
+Assumes a **new** AWS account (12-month Free Tier), region `ap-southeast-1`; Part A completed over a few days; Part B run ~3 hours and cleaned up immediately.
 
-- **Zero Idle Compute**: EC2 instances run ONLY during active matches. Matchmaking and Auth cost fractions of a cent via AWS Lambda & DynamoDB On-Demand.
-- **70-90% Discount via Spot & Graviton**: Graviton ARM64 Spot Instances provide industry-leading price-to-performance ratio for game servers.
-- **Elimination of NAT Gateway Fees**: Matchmaker Lambda communicates with AWS services inside private subnets using free/low-cost VPC Endpoints instead of expensive NAT Gateway data transfer.
-- **Thin AMI Maintenance**: Game binaries and patches are pulled dynamically from S3 at boot time, eliminating the overhead and cost of rebaking AMIs for minor game patches.
+| Service | Free Tier limit | Workshop usage | Estimated cost |
+|---|---|---|---|
+| S3 (Part A) | 5 GB + 20K GET/mo | 1 small bucket | **$0** |
+| DynamoDB (on-demand) | 25 GB + 2.5M reads/mo (Always Free) | dozens of items | **$0** |
+| AWS Lambda | 1M requests + 400K GB-s/mo | a few hundred calls | **$0** |
+| API Gateway (HTTP API) | 1M requests/mo (12 mo) | a few hundred requests | **$0** |
+| CloudWatch | 10 custom metrics, 3 dashboards | 1 dashboard + alarm | **$0** |
+| CloudTrail | First trail management events free | 1 trail | **$0** |
+| EC2 t2/t3.micro (Part B) | 750 hrs/mo | 2 × 3 hrs = 6 hrs | **$0** |
+| ALB (Part B) | **No Free Tier** | ~3 hrs | **≈ $0.07–0.15** |
+| Data transfer out | 100 GB/mo | few MB | **$0** |
+| **Total** | | | **≈ $0–0.20** |
+
+Budget controls: create a **Zero spend budget** in AWS Billing before starting Part B, clean up Part B in the same session, and watch **Cost Explorer** during the workshop week.
 
 ---
 
@@ -141,14 +136,16 @@ The architecture is divided into four distinct execution flows, each featuring i
 
 | Risk Item | Impact | Probability | Mitigation Strategy |
 | --- | --- | --- | --- |
-| **Spot Instance Interruption** | Medium | Low | ASG maintains a small warm pool and uses multi-AZ Spot allocation strategies for instant replacement. |
-| **Deployment Failure** | High | Low | AWS CodeDeploy performs gradual traffic shifting with automated rollback if health checks fail. |
-| **Unauthorized Game Access** | High | Low | API Gateway validates JWT tokens; dynamic SG rules restrict game server access solely to authenticated player IPs during match windows. |
+| Unexpected charges (ALB) | Medium | Medium | Zero-spend budget; delete Part B in the same session; follow the cleanup order in the workshop |
+| CORS errors in the browser | Medium | High | Configure CORS on API Gateway; redeploy `$default` stage; verify with the frontend |
+| Lambda 500 errors | Medium | Medium | Check CloudWatch logs (`/aws/lambda/notes-api`) and verify `NotesTableAccess` ARN |
+| ASG can't reach targets | Medium | Low | Verify SG allows HTTP 80 from `0.0.0.0/0`; check ALB health status |
 
 ---
 
 ### 8. Expected Outcomes
 
-- **Scalable Architecture**: Seamlessly handles spikes from 10 to 10,000+ concurrent players without manual intervention.
-- **Extreme Cost Efficiency**: Reduces operational cloud bills by up to 80% compared to traditional 24/7 dedicated server setups.
-- **Enterprise Security & Reliability**: Enforces strict network boundaries, GitOps deployment safety, and automated post-match analytics processing.
+- A **working, full-stack serverless app** (CloudNote) running live on AWS Free Tier with a browser demo.
+- Deepened understanding of IAM least-privilege, DynamoDB, Lambda + API Gateway, S3 static hosting, CloudWatch and CloudTrail.
+- A second **bonus demo**: ALB load-balancing across 2 EC2 instances in a custom VPC.
+- A complete set of screenshots/video/report material for the internship deliverable and self-evaluation.

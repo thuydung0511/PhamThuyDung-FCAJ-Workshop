@@ -6,50 +6,27 @@ chapter: false
 pre: " <b> 5.10. </b> "
 ---
 
-Sau khi triển khai và demo capstone, em ghi lại cách tháo dỡ toàn bộ stack fighting-game theo đúng thứ tự phụ thuộc. Với từng tài nguyên AWS, em mở trang console tương ứng và chọn xóa hoặc terminate.
+Sau khi ghi lại đầy đủ ảnh chụp và video demo của capstone, em tháo dỡ toàn bộ stack **CloudNote** theo đúng thứ tự phụ thuộc để giữ tài khoản gọn gàng và tránh phát sinh phí. Với từng tài nguyên AWS, em mở trang console tương ứng và chọn delete/terminate.
 
-Các ảnh dưới đây theo thứ tự em thực hiện: lớp ứng dụng và compute trước, tiếp theo API và serverless, lưu trữ, mạng, và cuối cùng là IAM roles.
+**Dọn Phần B trước (ưu tiên cao nhất — ALB tính phí theo giờ):**
 
-![Dọn dẹp tài nguyên](/images/5-Workshop/image39.png)
+1. **EC2 → Auto Scaling Groups** → chọn `cloudnote-asg` → **Delete** (instance bên trong bị terminate tự động).
+2. **EC2 → Load Balancers** → chọn `cloudnote-alb` → **Actions → Delete**.
+3. **EC2 → Target Groups** → chọn `cloudnote-tg` → **Delete**.
+4. **EC2 → Launch Templates** → chọn `cloudnote-web-template` → **Delete**.
+5. **EC2 → Instances** → terminate các instance độc lập còn sót lại nếu có.
+6. **VPC → Your VPCs** → chọn `cloudnote-vpc` → **Actions → Delete VPC** (wizard tự xoá subnet, route table, IGW).
+7. **EC2 → Key Pairs** → xoá `cloudnote-key` nếu không còn dùng.
 
-### CodeDeploy
+**Dọn Phần A:**
 
-![Xóa CodeDeploy](/images/5-Workshop/image40.png)
+8. **CloudTrail → Trails** → `cloudnote-audit-trail` → **Delete** (có thể giữ lại — management events của trail đầu tiên miễn phí).
+9. **CloudWatch** → xoá alarm `notes-api-error-alarm`; xoá dashboard `CloudNote-Dashboard`.
+10. **API Gateway** → `notes-http-api` → **Delete**.
+11. **Lambda** → `notes-api` → **Delete**.
+12. **IAM → Roles** → xoá `LambdaNotesExecutionRole`.
+13. **DynamoDB** → bảng `Notes` → **Delete table**.
+14. **S3** → **Empty** bucket `cloudnote-app-0205568-2026` (bắt buộc trước khi xoá) → **Delete bucket**; lặp lại với bucket log CloudTrail nếu đã xoá trail ở bước 8.
+15. (Tuỳ chọn) **IAM** → xoá user thực hành `cloudnote-dev` hoặc giữ lại cho các workshop tiếp theo.
 
-### Auto Scaling Group
-
-![Xóa ASG](/images/5-Workshop/image41.png)
-
-### EC2 instances
-
-![Xóa EC2](/images/5-Workshop/image42.png)
-
-### Launch template
-
-![Xóa launch template](/images/5-Workshop/image43.png)
-
-### API Gateway
-
-![Xóa API Gateway](/images/5-Workshop/image44.png)
-
-### Lambda functions
-
-![Xóa Lambda](/images/5-Workshop/image45.png)
-
-### DynamoDB tables
-
-![Xóa DynamoDB](/images/5-Workshop/image46.png)
-
-### S3 bucket
-
-![Empty S3 bucket](/images/5-Workshop/image47.png)
-
-![Xóa S3 bucket](/images/5-Workshop/image48.png)
-
-### VPC
-
-![Xóa VPC](/images/5-Workshop/image49.png)
-
-### IAM roles
-
-![Xóa IAM roles](/images/5-Workshop/delete-iam-roles.png)
+**Kiểm tra cuối cùng:** mở **AWS Billing → Bills / Cost Explorer** xác nhận không còn tài nguyên đang chạy phát sinh phí (đặc biệt điểm EC2 và ELB).

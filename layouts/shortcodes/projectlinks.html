@@ -1,11 +1,11 @@
 {{- $lang := .Get "lang" | default "en" -}}
 {{- $projectURL := "http://cloudnote-app-0205568-2026.s3-website-ap-southeast-1.amazonaws.com/" -}}
-{{- $repoURL := "https://github.com/thuydung0511" -}}
+{{- $repoURL := "https://github.com/thuydung0511/PhamThuyDung-FCAJ-Workshop" -}}
 {{- $projectLabel := "Project Link" -}}
-{{- $repoLabel := "Repository (will be updated soon)" -}}
+{{- $repoLabel := "Repository" -}}
 {{- if eq $lang "vi" -}}
   {{- $projectLabel = "Liên kết dự án" -}}
-  {{- $repoLabel = "Repository (sẽ cập nhật sau)" -}}
+  {{- $repoLabel = "Repository" -}}
 {{- end -}}
 
 <div class="report-project-links">

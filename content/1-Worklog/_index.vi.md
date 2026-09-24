@@ -10,7 +10,7 @@ pre: " <b> 1. </b> "
 
 **Sinh viên:** Phạm Thùy Dung (MSSV: 0205568)  
 **Cán bộ hướng dẫn tại đơn vị TT:** Nguyễn Gia Hưng – hunggia@amazon.com.vn  
-**Giảng viên hướng dẫn tại trường:** Nguyễn Lễ Văn – nl.van@hutech.edu.vn
+**Giảng viên hướng dẫn tại trường:** ThS. Lê Văn Minh
 
 **Tuần 1:** [Làm quen với AWS và tạo tài khoản AWS](1.1-week1/)
 

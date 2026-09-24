@@ -12,7 +12,7 @@ BM03/QT05/ĐT-KT
 
 **3. Giảng viên theo dõi/ hướng dẫn thực tập tại trường (họ tên – email):** : 
 
-**4.** Nguyễ�n Lễ Văn – <u>nl.van@hutech.edu.vn</u> 
+**4.** ThS. Lê Văn Minh 
 
 ## **5. Sinh viên thực hiện** : 
 
@@ -58,7 +58,7 @@ Chuyên ngành: Mạng Máy Tính
 
 **Cán bộ hướng dẫn tại đơn vị TT** _(Ký và ghi rõ họ tên)_ 
 
-_TP. HCM, ngày … tháng … năm 20…._ **Giảng viên hướng dẫn tại trường** _(Ký và ghi rõ họ tên)_ 
+_Hà Nội, ngày … tháng … năm 20…._ **Giảng viên hướng dẫn tại trường** _(Ký và ghi rõ họ tên)_ 
 
 3 
 

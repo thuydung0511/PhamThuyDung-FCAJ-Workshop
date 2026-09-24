@@ -10,7 +10,7 @@ pre: " <b> 1. </b> "
 
 **Student:** Phạm Thùy Dung (MSSV: 0205568)  
 **Mentor:** Nguyễn Gia Hưng – hunggia@amazon.com.vn  
-**University advisor:** Nguyễn Lễ Văn – nl.van@hutech.edu.vn
+**University advisor:** MSc. Le Van Minh
 
 **Week 1:** [Getting familiar with AWS and creating an AWS account](1.1-week1/)
 

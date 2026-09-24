@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong suốt thời gian thực tập tại **Công ty TNHH Amazon Web Services Việt Nam** (chương trình First Cloud AI Journey) từ **01/08/2026** đến **14/09/2026**, em đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.
+Trong suốt thời gian thực tập tại **Công ty TNHH Amazon Web Services Việt Nam** (chương trình First Cloud AI Journey) từ **01/08/2026** đến **27/09/2026**, em đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.
 
 Em tham gia **dự án capstone CloudNote** — xây dựng ứng dụng ghi chú serverless full-stack trên AWS — qua đó cải thiện kỹ năng **kiến trúc cloud, triển khai hạ tầng, CI/CD, viết tài liệu kỹ thuật và giao tiếp chuyên nghiệp**.
 

@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Amazon Web Services Vietnam** (First Cloud AI Journey program) from **01/08/2026** to **14/09/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired at university to a real-world cloud engineering environment.
+During my internship at **Amazon Web Services Vietnam** (First Cloud AI Journey program) from **01/08/2026** to **27/09/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired at university to a real-world cloud engineering environment.
 
 I participated in the **CloudNote capstone project** — building a full-stack serverless notes application on AWS — through which I improved my skills in **cloud architecture, infrastructure as code, CI/CD, technical documentation, and professional communication**.
 

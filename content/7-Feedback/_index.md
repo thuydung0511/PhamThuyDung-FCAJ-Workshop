@@ -32,7 +32,7 @@ The program culture emphasizes learning in public, sharing knowledge at communit
 
 **6. Internship policies / benefits**
 
-The structured 7-week timeline, clear deliverables (worklog, proposal, workshop, report), and access to AWS learning resources provided a well-defined internship path. Internal sessions and community events were valuable complements to self-directed project work.
+The structured 5-week timeline, clear deliverables (worklog, proposal, workshop, report), and access to AWS learning resources provided a well-defined internship path. Internal sessions and community events were valuable complements to self-directed project work.
 
 ---
 

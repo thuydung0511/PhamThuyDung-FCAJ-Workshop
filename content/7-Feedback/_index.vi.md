@@ -32,7 +32,7 @@ Văn hóa chương trình nhấn mạnh học hỏi công khai, chia sẻ tại 
 
 **6. Chính sách / phúc lợi cho thực tập sinh**
 
-Lộ trình 7 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi nội bộ và sự kiện cộng đồng bổ trợ tốt cho tự học dự án.
+Lộ trình 5 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi nội bộ và sự kiện cộng đồng bổ trợ tốt cho tự học dự án.
 
 ---
 

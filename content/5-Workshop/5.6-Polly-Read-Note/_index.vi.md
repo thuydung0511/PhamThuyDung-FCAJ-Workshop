@@ -164,3 +164,7 @@ Upload lại `index.html` lên bucket S3.
 | Gọi `/speak` không có token | **401**, bị chặn ngay tại API Gateway |
 | Tài khoản B gọi `/speak` trên ghi chú của tài khoản A | **403**, Lambda không gọi Polly |
 | Gọi `/speak` với noteId không tồn tại | **403**, không tiết lộ ghi chú có tồn tại hay không |
+
+![Request /speak](/images/5-Workshop/5.6-speak.png)
+
+*Hình: Request /speak: preflight 204, POST 200 trả về MP3, phát thành công.*

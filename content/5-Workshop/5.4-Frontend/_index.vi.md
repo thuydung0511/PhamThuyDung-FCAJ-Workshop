@@ -76,6 +76,10 @@ Mọi giá trị hiển thị (`title`, `content`, `noteId`) đều đi qua `esc
    - Xoá ghi chú, tải lại trang: ghi chú đã mất.
    - Đối chiếu trực tiếp trong **DynamoDB → Explore table items**.
 
+![Giao diện CloudNote khi đã đăng nhập](/images/5-Workshop/5.4-cloudnote-app.png)
+
+*Hình: Giao diện CloudNote khi đã đăng nhập (bản cuối sau 5.5–5.6): email người dùng, Đăng xuất, Thêm, và các nút Đọc/Sửa/Xoá trên từng ghi chú.*
+
 ## Lỗi gặp phải và cách xử lý
 
 Bước này không gặp lỗi. Lỗi liên quan tới frontend xuất hiện sau khi thêm đăng nhập (CORS thiếu header `Authorization`), xem [5.5](../5.5-authentication/).

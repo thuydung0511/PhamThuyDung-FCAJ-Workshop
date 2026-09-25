@@ -129,6 +129,10 @@ def lambda_handler(event, context):
         return response(500, {"error": str(e)})
 ```
 
+![Bảng Notes với 8 item](/images/5-Workshop/5.3-dynamodb.png)
+
+*Hình: Bảng Notes với 8 item. Các note cũ (tạo trước khi có Cognito) không có userId và createdAt dạng ngày; các note mới có userId của 3 tài khoản khác nhau.*
+
 ### 3. API Gateway `notes-http-api`
 
 1. **API Gateway → Create API → HTTP API → Build**, tên `notes-http-api`, integration Lambda `notes-api`.
@@ -143,6 +147,10 @@ def lambda_handler(event, context):
 
 3. Dùng stage `$default` (Auto-deploy), lấy **Invoke URL**.
 4. Bật **CORS**: Origin `*`, header `content-type`, method `GET, POST, PUT, DELETE, OPTIONS`. (Header `Authorization` được thêm ở [5.5](../5.5-authentication/).)
+
+![5 route của notes-http-api](/images/5-Workshop/5.3-api-routes.png)
+
+*Hình: 5 route của notes-http-api (route /speak được thêm ở 5.6); route GET /notes gắn authorizer (thêm ở 5.5) và integration Lambda.*
 
 ### 4. Test API bằng PowerShell
 

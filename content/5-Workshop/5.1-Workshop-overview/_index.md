@@ -16,7 +16,9 @@ The browser loads the static website (HTML/CSS/JS) from **Amazon S3**. The user 
 
 Part B (VPC, EC2, ALB, Auto Scaling) is a separate exercise on a horizontally scalable web tier. It was cleaned up after testing and is not part of the CloudNote architecture.
 
-> Architecture diagram: will be updated.
+![CloudNote architecture](/images/5-Workshop/architecture-cloudnote.png)
+
+*Figure: CloudNote architecture. 1) The browser loads the website from S3; 2) the user signs in with Cognito and receives a JWT; 3) the browser calls the API with the JWT; 4) API Gateway forwards valid requests to Lambda; 5) Lambda reads/writes DynamoDB by userId; 6) Lambda calls Polly to read notes aloud. CloudWatch, SNS and CloudTrail handle monitoring and auditing.*
 
 ## Prerequisites
 

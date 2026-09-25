@@ -8,7 +8,7 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives:
 
-* Build the **CloudNote** capstone project on AWS following the architecture designed in Week 4.
+* Continue building the **CloudNote** capstone project on AWS (started in Week 4 with A0–A2), following the architecture designed in Week 4.
 * Add user authentication, per-user data isolation and one AI feature.
 * Do Part B separately as a practice exercise: VPC, ALB, Auto Scaling, then clean up the resources.
 * Publish the internship report website on GitHub Pages.
@@ -19,20 +19,18 @@ pre: " <b> 1.5. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | ---------- | --------------- | ------------------ |
-| Sun | - Serverless backend (A0–A5): IAM user, DynamoDB, IAM role, Lambda CRUD, API Gateway, API tests <br> - Part B preparation: IAM group with VPC/EC2/ELB permissions | 20/09/2026 | 20/09/2026 | |
+| Sun | - Completed A3–A8 (continuing the work started on 19/09, see [Week 4](../1.4-week4/)): Lambda CRUD, API Gateway, API tests, S3 frontend, end-to-end test, CloudWatch dashboard, alarm and SNS <br> - Part B preparation: IAM group with VPC/EC2/ELB permissions | 20/09/2026 | 20/09/2026 | |
 | Mon | - Part B: 2-AZ VPC (B1), Launch Template and security group (B2) | 21/09/2026 | 21/09/2026 | |
-| Tue | - S3 frontend, end-to-end test, CloudWatch, SNS, CloudTrail (A6–A9) <br> - Part B: Target Group, ALB, Auto Scaling, load-balancing test (B3–B5), cleanup | 22/09/2026 | 22/09/2026 | |
-| Wed | - Authentication with Cognito + JWT Authorizer, Edit button, filtering data by `userId` <br> - Tried Bedrock and Comprehend (blocked) <br> - Pushed the report website to GitHub | 23/09/2026 | 23/09/2026 | |
+| Tue | - CloudTrail (A9) <br> - Created the Cognito User Pool <br> - Part B: Target Group, ALB, Auto Scaling, load-balancing test (B3–B5), cleanup | 22/09/2026 | 22/09/2026 | |
+| Wed | - Continued authentication: JWT Authorizer, sign-up/sign-in on the frontend, Edit button, filtering data by `userId` <br> - Tried Bedrock and Comprehend (blocked) <br> - Pushed the report website to GitHub | 23/09/2026 | 23/09/2026 | |
 | Thu | - Fixed the GitHub Pages 404 error <br> - Tried Translate and Polly; built the "Read note" feature with Amazon Polly <br> - Opened an AWS Support case requesting Bedrock access | 24/09/2026 | 24/09/2026 | |
 
 ### Implementation details
 
-#### 1. Serverless backend (A0–A5)
+#### 1. Serverless backend (A3–A5)
 
 **Steps**
-* **A0 – IAM:** created IAM user `cloudnote-dev` with 7 managed policies (S3, DynamoDB, Lambda, API Gateway, IAM, CloudWatch, CloudTrail); worked with this user from then on instead of root.
-* **A1 – DynamoDB:** table `Notes`, partition key `noteId` (String), On-demand mode.
-* **A2 – IAM Role:** `LambdaNotesExecutionRole` with `AWSLambdaBasicExecutionRole` and inline policy `NotesTableAccess`, allowing only Put/Get/Update/Delete/Scan/Query on the `Notes` table.
+* A0–A2 (IAM user, DynamoDB table `Notes`, role `LambdaNotesExecutionRole`) were done on 19/09, see [Week 4](../1.4-week4/).
 * **A3 – Lambda:** function `notes-api` (Python 3.12) handling GET/POST/PUT/DELETE; ran a Test event and checked the item in DynamoDB.
 * **A4 – API Gateway:** HTTP API `notes-http-api` with 4 routes `GET /notes`, `POST /notes`, `PUT /notes/{noteId}`, `DELETE /notes/{noteId}`; CORS enabled.
 * **A5 – API tests:** tested all 4 methods with PowerShell (`Invoke-RestMethod`) and the preflight with an OPTIONS request.

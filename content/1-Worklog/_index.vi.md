@@ -18,6 +18,6 @@ pre: " <b> 1. </b> "
 
 **Tuần 3 (29/08 – 11/09):** [Mạng AWS: VPC, Subnet, Internet Gateway; lên ý tưởng CloudNote](1.3-week3/)
 
-**Tuần 4 (12/09 – 19/09):** [AWS Lambda, Serverless, CloudWatch, CloudTrail; thiết kế kiến trúc CloudNote](1.4-week4/)
+**Tuần 4 (12/09 – 19/09):** [AWS Lambda, Serverless, CloudWatch, CloudTrail; thiết kế kiến trúc CloudNote, bắt đầu thực hành](1.4-week4/)
 
 **Tuần 5 (20/09 – 27/09):** [Thực hành dự án tổng hợp CloudNote](1.5-week5/)

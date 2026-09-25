@@ -33,6 +33,10 @@ Then check each item again to confirm that no Part B resources remain.
 - **No upgrade to the Paid plan** when Bedrock, Comprehend and Translate were blocked; switched to Amazon Polly ([5.6](../5.6-polly-read-note/)).
 - DynamoDB runs in **On-demand** mode; Polly receives at most 3000 characters per request (`text[:3000]`).
 
+![Zero-Spend Budget](/images/5-Workshop/5.9-budget.png)
+
+*Figure: Zero-Spend Budget: OK / Healthy, Amount used $0.00. The Forecasted column is AWS's projection for the whole month based on the usage rate, not the actual cost; the charges incurred were covered by AWS credits ($3.84 used of $200).*
+
 ### 3. CloudNote resources kept
 
 Part A is still running for the demo: IAM user/group/role, DynamoDB table `Notes`, Lambda `notes-api`, HTTP API `notes-http-api`, the static website S3 bucket and the CloudTrail log bucket, Cognito User Pool, CloudWatch dashboard and alarm, SNS topic `cloudnote-alerts`, trail `cloudnote-audit-trail`, Zero-Spend Budget.

@@ -43,7 +43,7 @@ Lợi ích:
 
 Luồng chính hoàn toàn serverless; lab bonus bổ sung web tier mở rộng ngang truyền thống.
 
-![Kiến trúc Serverless CloudNote](/images/2-Proposal/architecture.png)
+![Kiến trúc Serverless CloudNote](/images/5-Workshop/architecture-cloudnote.png)
 
 #### Luồng chính (Phần A — Lõi Serverless)
 

@@ -21,6 +21,10 @@ pre: " <b> 5.5. </b> "
 2. Create a **User Pool** with **Email** sign-in and self-registration enabled.
 3. Create an **App Client** of type **Single-page application** (public client, no client secret).
 
+![The User Pool with 3 confirmed users](/images/5-Workshop/5.5-cognito.png)
+
+*Figure: The User Pool with 3 confirmed users. The User name is the sub claim, the same value as the userId column in DynamoDB.*
+
 ### 2. JWT Authorizer on API Gateway
 
 1. Open `notes-http-api` → **Authorization** → create a **JWT Authorizer**:
@@ -28,6 +32,10 @@ pre: " <b> 5.5. </b> "
    - Audience: `<APP_CLIENT_ID>`.
 2. Attach the authorizer to all 4 routes; the `$default` stage auto-deploys.
 3. **CORS**: add `Authorization` to the allowed headers.
+
+![All 5 routes have the JWT Auth authorizer attached](/images/5-Workshop/5.5-authorizer.png)
+
+*Figure: All 5 routes have the JWT Auth authorizer attached.*
 
 ### 3. Lambda: read `userId` and isolate data
 
@@ -177,3 +185,7 @@ async function saveNote() {
 - Calling the API without a token → **401 Unauthorized**.
 - With a valid token → Add, Edit and Delete work normally.
 - Tested with 2 different accounts: each account sees only its own notes.
+
+![Calling the API without a token returns 401 Unauthorized](/images/5-Workshop/5.5-test-401.png)
+
+*Figure: Calling the API without a token returns 401 Unauthorized.*

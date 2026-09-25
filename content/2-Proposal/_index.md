@@ -43,7 +43,7 @@ Benefits:
 
 The main flow is fully serverless; the bonus lab adds a traditional scale-out web tier.
 
-![CloudNote Serverless Architecture](/images/2-Proposal/architecture.png)
+![CloudNote Serverless Architecture](/images/5-Workshop/architecture-cloudnote.png)
 
 #### Main Flow (Part A — Serverless Core)
 

@@ -21,6 +21,10 @@ pre: " <b> 5.5. </b> "
 2. Tạo **User Pool** đăng nhập bằng **Email**, cho phép người dùng tự đăng ký (self-registration).
 3. Tạo **App Client** kiểu **Single-page application** (public client, không có client secret).
 
+![User Pool với 3 user đã xác nhận](/images/5-Workshop/5.5-cognito.png)
+
+*Hình: User Pool với 3 user đã xác nhận. User name chính là claim sub, trùng với cột userId trong DynamoDB.*
+
 ### 2. JWT Authorizer trên API Gateway
 
 1. Mở `notes-http-api` → **Authorization** → tạo **JWT Authorizer**:
@@ -28,6 +32,10 @@ pre: " <b> 5.5. </b> "
    - Audience: `<APP_CLIENT_ID>`.
 2. Gắn authorizer vào cả 4 route; stage `$default` tự động deploy.
 3. **CORS**: thêm `Authorization` vào danh sách header được phép.
+
+![Cả 5 route đều gắn JWT Auth](/images/5-Workshop/5.5-authorizer.png)
+
+*Hình: Cả 5 route đều gắn JWT Auth.*
 
 ### 3. Lambda: lấy `userId` và cách ly dữ liệu
 
@@ -177,3 +185,7 @@ async function saveNote() {
 - Gọi API không có token → **401 Unauthorized**.
 - Có token hợp lệ → Thêm, Sửa, Xoá hoạt động bình thường.
 - Thử với 2 tài khoản khác nhau: mỗi tài khoản chỉ thấy ghi chú của mình.
+
+![Gọi API không có token → 401 Unauthorized](/images/5-Workshop/5.5-test-401.png)
+
+*Hình: Gọi API không có token → 401 Unauthorized.*

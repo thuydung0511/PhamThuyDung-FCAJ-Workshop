@@ -8,7 +8,7 @@ pre: " <b> 1.5. </b> "
 
 ### Mục tiêu tuần 5:
 
-* Triển khai dự án tổng hợp **CloudNote** trên AWS theo kiến trúc đã thiết kế ở tuần 4.
+* Tiếp tục triển khai dự án tổng hợp **CloudNote** trên AWS (đã bắt đầu A0–A2 ở tuần 4) theo kiến trúc đã thiết kế ở tuần 4.
 * Bổ sung xác thực người dùng, cách ly dữ liệu theo người dùng và một tính năng AI.
 * Thực hành riêng Phần B: VPC, ALB, Auto Scaling, sau đó dọn dẹp tài nguyên.
 * Đưa website báo cáo thực tập lên GitHub Pages.
@@ -19,20 +19,18 @@ pre: " <b> 1.5. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | ------------ | --------------- | -------------- |
-| CN | - Backend serverless (A0–A5): IAM user, DynamoDB, IAM role, Lambda CRUD, API Gateway, test API <br> - Chuẩn bị Phần B: tạo IAM group cấp quyền VPC/EC2/ELB | 20/09/2026 | 20/09/2026 | |
+| CN | - Hoàn thành A3–A8 (tiếp nối phần bắt đầu từ 19/09, xem [tuần 4](../1.4-week4/)): Lambda CRUD, API Gateway, test API, frontend S3, test end-to-end, CloudWatch dashboard, alarm và SNS <br> - Chuẩn bị Phần B: tạo IAM group cấp quyền VPC/EC2/ELB | 20/09/2026 | 20/09/2026 | |
 | 2 | - Phần B: tạo VPC 2 AZ (B1), Launch Template và security group (B2) | 21/09/2026 | 21/09/2026 | |
-| 3 | - Frontend S3, test end-to-end, CloudWatch, SNS, CloudTrail (A6–A9) <br> - Phần B: Target Group, ALB, Auto Scaling, test cân bằng tải (B3–B5), dọn dẹp | 22/09/2026 | 22/09/2026 | |
-| 4 | - Xác thực bằng Cognito + JWT Authorizer, nút Sửa, lọc dữ liệu theo `userId` <br> - Thử Bedrock, Comprehend (bị chặn) <br> - Đẩy website báo cáo lên GitHub | 23/09/2026 | 23/09/2026 | |
+| 3 | - CloudTrail (A9) <br> - Tạo Cognito User Pool <br> - Phần B: Target Group, ALB, Auto Scaling, test cân bằng tải (B3–B5), dọn dẹp | 22/09/2026 | 22/09/2026 | |
+| 4 | - Tiếp tục phần xác thực: JWT Authorizer, đăng ký/đăng nhập trên frontend, nút Sửa, lọc dữ liệu theo `userId` <br> - Thử Bedrock, Comprehend (bị chặn) <br> - Đẩy website báo cáo lên GitHub | 23/09/2026 | 23/09/2026 | |
 | 5 | - Sửa lỗi 404 GitHub Pages <br> - Thử Translate, Polly; làm tính năng "Đọc ghi chú" bằng Amazon Polly <br> - Mở case AWS Support xin quyền Bedrock | 24/09/2026 | 24/09/2026 | |
 
 ### Chi tiết thực hiện
 
-#### 1. Backend serverless (A0–A5)
+#### 1. Backend serverless (A3–A5)
 
 **Các bước**
-* **A0 – IAM:** tạo IAM user `cloudnote-dev` với 7 managed policy (S3, DynamoDB, Lambda, API Gateway, IAM, CloudWatch, CloudTrail); từ đây làm việc bằng user này, không dùng root.
-* **A1 – DynamoDB:** bảng `Notes`, partition key `noteId` (String), chế độ On-demand.
-* **A2 – IAM Role:** `LambdaNotesExecutionRole` gồm `AWSLambdaBasicExecutionRole` và inline policy `NotesTableAccess`, chỉ cho phép Put/Get/Update/Delete/Scan/Query trên bảng `Notes`.
+* A0–A2 (IAM user, bảng DynamoDB `Notes`, role `LambdaNotesExecutionRole`) đã làm ngày 19/09, xem [tuần 4](../1.4-week4/).
 * **A3 – Lambda:** hàm `notes-api` (Python 3.12) xử lý GET/POST/PUT/DELETE; chạy Test event và kiểm tra item trong DynamoDB.
 * **A4 – API Gateway:** HTTP API `notes-http-api`, 4 route `GET /notes`, `POST /notes`, `PUT /notes/{noteId}`, `DELETE /notes/{noteId}`; bật CORS.
 * **A5 – Test API:** test đủ 4 method bằng PowerShell (`Invoke-RestMethod`), test preflight bằng request OPTIONS.

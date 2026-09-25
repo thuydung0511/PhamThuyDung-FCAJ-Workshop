@@ -10,6 +10,7 @@ pre: " <b> 1.2. </b> "
 
 * Learn the AWS core services: Amazon EC2, Amazon S3 and AWS IAM.
 * Complete Lab 000004 (Introduction to Amazon EC2).
+* Finish Lab 000001: complete the 5 "Explore AWS" tasks.
 
 **Period:** 15/08/2026 – 28/08/2026
 
@@ -19,6 +20,7 @@ pre: " <b> 1.2. </b> "
 | --- | --- | ---------- | --------------- | ------------------ |
 | Sat | Attended a session at the AWS Hanoi office | 15/08/2026 | 15/08/2026 | |
 | Sat | Attended a session at the AWS Hanoi office | 22/08/2026 | 22/08/2026 | |
+| Sat | Completed the 5 "Explore AWS" tasks (Lab 000001), received an additional $100 in credit | 22/08/2026 | 22/08/2026 | |
 
 Self-study during the week: EC2, S3 and IAM concepts, and Lab 000004.
 
@@ -28,3 +30,4 @@ Self-study during the week: EC2, S3 and IAM concepts, and Lab 000004.
 * **S3:** understood buckets, objects, access control and static website hosting.
 * **IAM:** understood users, groups, roles and policies, and the principle of least privilege.
 * Completed Lab 000004 — Introduction to Amazon EC2.
+* Completed Lab 000001: finished the 5 "Explore AWS" tasks and received an additional $100, for a total of $200 in credit.

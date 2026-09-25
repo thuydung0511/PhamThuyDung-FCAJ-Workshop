@@ -21,6 +21,10 @@ pre: " <b> 5.7. </b> "
 3. Widget 2 — DynamoDB bảng `Notes`: `ConsumedReadCapacityUnits`, `ConsumedWriteCapacityUnits`.
 4. Lưu dashboard.
 
+![CloudNote-Dashboard trong 1 tuần](/images/5-Workshop/5.7-dashboard.png)
+
+*Hình: CloudNote-Dashboard trong 1 tuần: Lambda Errors = 0 (giờ UTC).*
+
 ### 2. Alarm và SNS
 
 1. **CloudWatch → Alarms → Create alarm**, metric `Errors` của `notes-api`.
@@ -29,11 +33,19 @@ pre: " <b> 5.7. </b> "
 4. Tên alarm `notes-api-error-alarm`.
 5. **Missing data treatment:** "Treat missing data as good".
 
+![Alarm notes-api-error-alarm](/images/5-Workshop/5.7-alarm.png)
+
+*Hình: Alarm notes-api-error-alarm: trạng thái OK, Actions enabled, điều kiện Errors > 0 trong 5 phút.*
+
 ### 3. CloudTrail
 
 1. **CloudTrail → Trails → Create trail**, tên `cloudnote-audit-trail`, áp dụng cho mọi Region (multi-region).
 2. Ghi **Management events** cả Read và Write; log được lưu vào một bucket S3 do trail tạo.
 3. Kiểm tra trạng thái trail là **Logging**.
+
+![Trail cloudnote-audit-trail](/images/5-Workshop/5.7-cloudtrail.png)
+
+*Hình: Trail cloudnote-audit-trail: trạng thái Logging, multi-region.*
 
 ## Lỗi gặp phải và cách xử lý
 

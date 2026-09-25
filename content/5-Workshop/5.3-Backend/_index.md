@@ -129,6 +129,10 @@ def lambda_handler(event, context):
         return response(500, {"error": str(e)})
 ```
 
+![The Notes table with 8 items](/images/5-Workshop/5.3-dynamodb.png)
+
+*Figure: The Notes table with 8 items. Old notes (created before Cognito was added) have no userId and no date-style createdAt; newer notes carry the userId of 3 different accounts.*
+
 ### 3. API Gateway `notes-http-api`
 
 1. **API Gateway → Create API → HTTP API → Build**, name `notes-http-api`, Lambda integration `notes-api`.
@@ -143,6 +147,10 @@ def lambda_handler(event, context):
 
 3. Use the `$default` stage (Auto-deploy) and copy the **Invoke URL**.
 4. Enable **CORS**: origin `*`, header `content-type`, methods `GET, POST, PUT, DELETE, OPTIONS`. (The `Authorization` header is added in [5.5](../5.5-authentication/).)
+
+![The 5 routes of notes-http-api](/images/5-Workshop/5.3-api-routes.png)
+
+*Figure: The 5 routes of notes-http-api (the /speak route is added in 5.6); GET /notes has the authorizer (added in 5.5) and the Lambda integration attached.*
 
 ### 4. Test the API with PowerShell
 

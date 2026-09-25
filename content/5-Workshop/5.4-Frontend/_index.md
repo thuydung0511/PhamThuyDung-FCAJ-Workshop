@@ -76,6 +76,10 @@ Every displayed value (`title`, `content`, `noteId`) goes through `esc()` when t
    - Delete a note, reload the page: the note is gone.
    - Compare directly in **DynamoDB → Explore table items**.
 
+![The CloudNote interface when signed in](/images/5-Workshop/5.4-cloudnote-app.png)
+
+*Figure: The CloudNote interface when signed in (final version after 5.5–5.6): user email, Sign out, Add, and Read/Edit/Delete buttons on each note.*
+
 ## Issues and fixes
 
 No issues in this step. A frontend-related issue appeared after adding sign-in (CORS missing the `Authorization` header), see [5.5](../5.5-authentication/).

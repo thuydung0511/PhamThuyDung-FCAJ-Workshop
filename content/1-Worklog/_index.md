@@ -18,6 +18,6 @@ pre: " <b> 1. </b> "
 
 **Week 3 (29/08 – 11/09):** [AWS networking: VPC, Subnet, Internet Gateway; CloudNote idea](1.3-week3/)
 
-**Week 4 (12/09 – 19/09):** [AWS Lambda, serverless, CloudWatch, CloudTrail; CloudNote architecture design](1.4-week4/)
+**Week 4 (12/09 – 19/09):** [AWS Lambda, serverless, CloudWatch, CloudTrail; CloudNote architecture design and start of implementation](1.4-week4/)
 
 **Week 5 (20/09 – 27/09):** [CloudNote capstone project implementation](1.5-week5/)

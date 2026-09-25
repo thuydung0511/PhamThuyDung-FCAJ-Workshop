@@ -55,6 +55,10 @@ Trong quá trình làm, user được gắn thêm `AWSCloudShellFullAccess` ([5.
 
 Sau này role được thêm inline policy `PollySynthesizeSpeech` (chỉ gồm `polly:SynthesizeSpeech`) cho tính năng "Đọc ghi chú" ([5.6](../5.6-polly-read-note/)).
 
+![Role LambdaNotesExecutionRole với 3 policy](/images/5-Workshop/5.2-iam-role.png)
+
+*Hình: Role LambdaNotesExecutionRole với 3 policy: AWSLambdaBasicExecutionRole, NotesTableAccess và PollySynthesizeSpeech (least privilege).*
+
 ### 3. IAM group `cloudnote-network-group`
 
 Phần B cần thêm quyền VPC, EC2 và ELB, nhưng user đã gần chạm giới hạn 10 managed policy gắn trực tiếp.

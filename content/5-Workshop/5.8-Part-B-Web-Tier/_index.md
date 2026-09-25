@@ -10,6 +10,10 @@ pre: " <b> 5.8. </b> "
 
 A separate exercise, not part of the CloudNote architecture: build a web tier of 2 EC2 instances in 2 Availability Zones, behind an Application Load Balancer and managed by an Auto Scaling Group, then verify load balancing. All resources were deleted after testing ([5.9](../5.9-cleanup-cost/)).
 
+![Part B architecture](/images/5-Workshop/architecture-partb.png)
+
+*Figure: Part B architecture: VPC 10.0.0.0/16 with 2 public subnets in 2 AZs, ALB in front of 2 EC2 instances managed by an Auto Scaling Group (min 1, desired 2, max 2).*
+
 ## Steps
 
 ### 0. Preparation

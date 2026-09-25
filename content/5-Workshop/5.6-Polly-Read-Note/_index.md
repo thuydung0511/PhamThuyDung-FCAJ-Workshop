@@ -164,3 +164,7 @@ Uploaded the updated `index.html` to the S3 bucket.
 | Call `/speak` without a token | **401**, blocked at API Gateway |
 | Account B calls `/speak` on account A's note | **403**, Lambda does not call Polly |
 | Call `/speak` with a non-existent noteId | **403**, without revealing whether the note exists |
+
+![The /speak request](/images/5-Workshop/5.6-speak.png)
+
+*Figure: The /speak request: preflight 204, POST 200 returning MP3, audio plays successfully.*

@@ -16,7 +16,9 @@ Trình duyệt tải trang web tĩnh (HTML/CSS/JS) từ **Amazon S3**. Người 
 
 Phần B (VPC, EC2, ALB, Auto Scaling) là bài thực hành riêng về web tier có khả năng mở rộng ngang. Phần này đã được dọn dẹp sau khi kiểm thử và không thuộc kiến trúc CloudNote.
 
-> Sơ đồ kiến trúc: sẽ cập nhật.
+![Kiến trúc CloudNote](/images/5-Workshop/architecture-cloudnote.png)
+
+*Hình: Kiến trúc CloudNote. 1) Trình duyệt tải web tĩnh từ S3; 2) người dùng đăng nhập Cognito, nhận JWT; 3) gọi API kèm JWT; 4) API Gateway chuyển request hợp lệ tới Lambda; 5) Lambda đọc/ghi DynamoDB theo userId; 6) Lambda gọi Polly để đọc ghi chú. CloudWatch, SNS và CloudTrail giám sát, cảnh báo và ghi log hoạt động.*
 
 ## Điều kiện
 

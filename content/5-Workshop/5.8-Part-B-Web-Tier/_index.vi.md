@@ -10,6 +10,10 @@ pre: " <b> 5.8. </b> "
 
 Bài thực hành riêng, không thuộc kiến trúc CloudNote: dựng một web tier gồm 2 máy EC2 trong 2 Availability Zone, đặt sau Application Load Balancer và do Auto Scaling Group quản lý, rồi kiểm tra cân bằng tải. Toàn bộ tài nguyên đã được xoá sau khi kiểm thử ([5.9](../5.9-cleanup-cost/)).
 
+![Kiến trúc Phần B](/images/5-Workshop/architecture-partb.png)
+
+*Hình: Kiến trúc Phần B: VPC 10.0.0.0/16 với 2 public subnet ở 2 AZ, ALB đứng trước 2 EC2 do Auto Scaling Group quản lý (min 1, desired 2, max 2).*
+
 ## Các bước
 
 ### 0. Chuẩn bị

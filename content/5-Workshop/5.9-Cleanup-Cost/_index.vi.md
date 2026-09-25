@@ -33,6 +33,10 @@ Sau đó kiểm tra lại từng mục, xác nhận không còn tài nguyên nà
 - **Không nâng cấp lên Paid plan** khi Bedrock, Comprehend, Translate bị chặn; chuyển sang Amazon Polly ([5.6](../5.6-polly-read-note/)).
 - DynamoDB chạy chế độ **On-demand**; Polly chỉ nhận tối đa 3000 ký tự mỗi lần đọc (`text[:3000]`).
 
+![Zero-Spend Budget](/images/5-Workshop/5.9-budget.png)
+
+*Hình: Zero-Spend Budget: OK / Healthy, Amount used $0.00. Cột Forecasted là dự báo cả tháng theo tốc độ sử dụng, không phải chi phí thực; chi phí phát sinh được AWS credit bù (đã dùng $3.84 trên $200).*
+
 ### 3. Tài nguyên CloudNote còn giữ lại
 
 Phần A vẫn đang chạy để demo: IAM user/group/role, bảng DynamoDB `Notes`, Lambda `notes-api`, HTTP API `notes-http-api`, bucket S3 web tĩnh và bucket log CloudTrail, Cognito User Pool, CloudWatch dashboard và alarm, SNS topic `cloudnote-alerts`, trail `cloudnote-audit-trail`, Zero-Spend Budget.

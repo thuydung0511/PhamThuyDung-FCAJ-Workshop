@@ -10,6 +10,7 @@ pre: " <b> 1.2. </b> "
 
 * Tìm hiểu các dịch vụ AWS cốt lõi: Amazon EC2, Amazon S3 và AWS IAM.
 * Thực hiện Lab 000004 (Introduction to Amazon EC2).
+* Hoàn tất Lab 000001: làm 5 nhiệm vụ "Explore AWS".
 
 **Thời gian:** 15/08/2026 – 28/08/2026
 
@@ -19,6 +20,7 @@ pre: " <b> 1.2. </b> "
 | --- | --- | ------------ | --------------- | -------------- |
 | 7 | Tham gia buổi học tại văn phòng AWS Hà Nội | 15/08/2026 | 15/08/2026 | |
 | 7 | Tham gia buổi học tại văn phòng AWS Hà Nội | 22/08/2026 | 22/08/2026 | |
+| 7 | Hoàn thành 5 nhiệm vụ "Explore AWS" (Lab 000001), nhận thêm $100 credit | 22/08/2026 | 22/08/2026 | |
 
 Tự học trong tuần: khái niệm EC2, S3, IAM và Lab 000004.
 
@@ -28,3 +30,4 @@ Tự học trong tuần: khái niệm EC2, S3, IAM và Lab 000004.
 * **S3:** hiểu bucket, object, kiểm soát truy cập và static website hosting.
 * **IAM:** hiểu user, group, role, policy và nguyên tắc quyền tối thiểu (least privilege).
 * Hoàn thành Lab 000004 — Introduction to Amazon EC2.
+* Hoàn thành Lab 000001: làm xong 5 nhiệm vụ "Explore AWS", nhận thêm $100, tổng cộng $200 credit.

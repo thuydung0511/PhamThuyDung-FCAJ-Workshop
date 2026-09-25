@@ -55,6 +55,10 @@ Later, the user also received `AWSCloudShellFullAccess` ([5.3](../5.3-backend/))
 
 Later, the role received inline policy `PollySynthesizeSpeech` (only `polly:SynthesizeSpeech`) for the "Read note" feature ([5.6](../5.6-polly-read-note/)).
 
+![Role LambdaNotesExecutionRole with 3 policies](/images/5-Workshop/5.2-iam-role.png)
+
+*Figure: Role LambdaNotesExecutionRole with 3 policies: AWSLambdaBasicExecutionRole, NotesTableAccess and PollySynthesizeSpeech (least privilege).*
+
 ### 3. IAM group `cloudnote-network-group`
 
 Part B needed VPC, EC2 and ELB permissions, but the user was close to the limit of 10 directly attached managed policies.

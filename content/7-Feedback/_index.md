@@ -20,7 +20,7 @@ My mentor provided clear guidance on architecture decisions, reviewed progress r
 
 **3. Relevance of work to academic major**
 
-The capstone CloudNote project aligned well with my **Computer Networks / Information Technology** studies while extending into areas not fully covered in coursework — serverless design, DynamoDB data modeling, API Gateway integration, CloudWatch monitoring, and CloudTrail auditing. The work bridged university theory with production-style AWS practice.
+The capstone CloudNote project aligned well with my **Computer Science** studies while extending into areas not fully covered in coursework — serverless design, DynamoDB data modeling, API Gateway integration, CloudWatch monitoring, and CloudTrail auditing. The work bridged university theory with production-style AWS practice.
 
 **4. Learning & skill development opportunities**
 

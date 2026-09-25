@@ -20,7 +20,7 @@ Mentor hướng dẫn rõ ràng về quyết định kiến trúc, theo dõi ti�
 
 **3. Sự phù hợp giữa công việc và chuyên ngành học**
 
-Dự án capstone CloudNote phù hợp với ngành **Mạng Máy Tính / Công Nghệ Thông Tin**, đồng thời mở rộng sang serverless, mô hình dữ liệu DynamoDB, tích hợp API Gateway, giám sát CloudWatch và kiểm toán CloudTrail — những mảng chưa được đào sâu tại trường. Công việc kết nối lý thuyết với thực hành AWS.
+Dự án capstone CloudNote phù hợp với ngành **Khoa học máy tính**, đồng thời mở rộng sang serverless, mô hình dữ liệu DynamoDB, tích hợp API Gateway, giám sát CloudWatch và kiểm toán CloudTrail — những mảng chưa được đào sâu tại trường. Công việc kết nối lý thuyết với thực hành AWS.
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 

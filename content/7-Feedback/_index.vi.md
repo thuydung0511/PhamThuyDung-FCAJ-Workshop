@@ -12,11 +12,11 @@ Dưới đây là ý kiến cá nhân của em về trải nghiệm tham gia ch�
 
 **1. Môi trường làm việc**
 
-Chương trình FCAJ tạo môi trường học tập cởi mở và hợp tác. Mentor và các thành viên trong cohort sẵn sàng hỗ trợ khi gặp khó khăn kỹ thuật hoặc thủ tục. Các sự kiện cộng đồng và buổi học tạo không gian thoải mái để tiếp cận dịch vụ AWS. Có thể bổ sung thêm hoạt động giao lưu giữa các cohort để tăng kết nối.
+Chương trình FCAJ tạo môi trường học tập cởi mở và hỗ trợ tốt. Trong các buổi học tại văn phòng AWS Hà Nội, mentor sẵn sàng hỗ trợ khi em gặp khó khăn kỹ thuật hoặc thủ tục, và các buổi học tạo không gian thoải mái để tiếp cận dịch vụ AWS.
 
 **2. Sự hỗ trợ của mentor / team admin**
 
-Mentor hướng dẫn rõ ràng về quyết định kiến trúc, theo dõi tiến độ thường xuyên và khuyến khích em tự thử giải pháp trước khi hỏi đáp án. Team admin hỗ trợ onboarding, tài liệu và logistics để em tập trung vào dự án.
+Em được mentor hướng dẫn trong các buổi học tại văn phòng AWS Hà Nội và được khuyến khích tự thử giải pháp trước khi hỏi đáp án. Team admin hỗ trợ onboarding, tài liệu và logistics để em tập trung vào dự án.
 
 **3. Sự phù hợp giữa công việc và chuyên ngành học**
 
@@ -24,32 +24,32 @@ Dự án capstone CloudNote phù hợp với ngành **Khoa học máy tính**, �
 
 **4. Cơ hội học hỏi & phát triển kỹ năng**
 
-Ngoài capstone, em học thêm qua **FCAJ Community Day**, workshop lab, xuất bản báo cáo Hugo và xử lý sự cố CI/CD. Các trải nghiệm này nâng cao cả chiều sâu kỹ thuật lẫn kỹ năng viết báo cáo.
+Ngoài capstone, em học thêm qua các buổi học tại văn phòng AWS Hà Nội, workshop lab, xuất bản báo cáo bằng Hugo và khắc phục lỗi deploy GitHub Pages. Các trải nghiệm này nâng cao cả chiều sâu kỹ thuật lẫn kỹ năng viết báo cáo.
 
 **5. Văn hóa & tinh thần đồng đội**
 
-Văn hóa chương trình nhấn mạnh học hỏi công khai, chia sẻ tại sự kiện cộng đồng và hỗ trợ đồng đội. Dù là thực tập sinh, em vẫn được khuyến khích tham gia thảo luận kỹ thuật và trình bày công việc.
+Văn hóa chương trình nhấn mạnh học qua thực hành và ghi chép lại công việc. Trong các buổi học tại văn phòng AWS Hà Nội, em thấy thoải mái khi đặt câu hỏi và được khuyến khích ghi chép, trình bày công việc của mình.
 
 **6. Chính sách / phúc lợi cho thực tập sinh**
 
-Lộ trình 5 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi nội bộ và sự kiện cộng đồng bổ trợ tốt cho tự học dự án.
+Lộ trình 5 tuần rõ ràng, deliverable cụ thể (worklog, proposal, workshop, báo cáo) và tài nguyên học AWS tạo khung thực tập ổn định. Các buổi học tại văn phòng AWS Hà Nội bổ trợ tốt cho việc tự học và làm dự án.
 
 ---
 
 ### Một số suy ngẫm thêm
 
-**Điều em hài lòng nhất:** Xây dựng hạ tầng serverless end-to-end cho CloudNote — từ DynamoDB và Lambda qua API Gateway, S3 static hosting, CloudWatch dashboard đến CloudTrail — và thấy ứng dụng ghi chú full-stack hoạt động trực tiếp trên trình duyệt.
+**Điều em hài lòng nhất:** Xây dựng hạ tầng serverless end-to-end cho CloudNote — từ DynamoDB và Lambda qua API Gateway, S3 static hosting, đăng nhập bằng Cognito, tính năng "Đọc ghi chú" với Amazon Polly, CloudWatch dashboard đến CloudTrail — và thấy ứng dụng ghi chú full-stack hoạt động trực tiếp trên trình duyệt.
 
-**Điều cần cải thiện cho thực tập sinh sau:** Thống nhất vai trò trong team capstone sớm hơn và có checklist tích hợp chung sẽ giảm ma sát ở giai đoạn cuối.
+**Điều cần cải thiện cho thực tập sinh sau:** Em làm capstone một mình nên phải tự quản lý thời gian. Thực tập sinh làm một mình nên đặt mốc thực hành từ sớm, tránh dồn phần lớn việc thực hành vào những tuần cuối.
 
-**Có khuyên bạn bè tham gia không?** Có. FCAJ mang lại mentorship có cấu trúc, dự án AWS thực tế và kết nối cộng đồng cloud — phù hợp sinh viên muốn thực hành cloud engineering ngoài lab trên lớp.
+**Có khuyên bạn bè tham gia không?** Có. FCAJ mang lại sự hướng dẫn của mentor, dự án AWS thực tế và các buổi học trực tiếp tại văn phòng AWS Hà Nội — phù hợp sinh viên muốn thực hành cloud engineering ngoài lab trên lớp.
 
 ---
 
 ### Đề xuất & mong muốn
 
-Em đề xuất duy trì cân bằng giữa tự học lab và check-in cohort, đồng thời tiếp tục Community Day kết nối thực tập sinh với chuyên gia ngành.
+Em đề xuất duy trì cân bằng giữa tự học lab và các buổi học trực tiếp tại văn phòng AWS Hà Nội, nơi thực tập sinh có thể hỏi mentor trực tiếp.
 
 Em mong muốn tiếp tục kết nối với cộng đồng FCAJ / AWS study sau chương trình.
 
-**Góp ý khác:** Cảm ơn mentor và ban tổ chức. Sự kết hợp giữa dự án, sự kiện và viết báo cáo giúp em phát triển cả về kỹ thuật lẫn phong cách làm việc chuyên nghiệp.
+**Góp ý khác:** Cảm ơn mentor và ban tổ chức. Sự kết hợp giữa dự án, các buổi học tại văn phòng AWS Hà Nội và viết báo cáo giúp em phát triển cả về kỹ thuật lẫn phong cách làm việc chuyên nghiệp.

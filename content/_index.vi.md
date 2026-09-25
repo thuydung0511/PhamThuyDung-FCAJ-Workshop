@@ -21,7 +21,7 @@ chapter: false
 
 &emsp; **Trường:** Đại học Xây dựng Hà Nội
 
-&emsp; **Ngành:** Công nghệ thông tin
+&emsp; **Ngành:** Khoa học máy tính
 
 &emsp; **Lớp:** 68CNCS
 
@@ -31,7 +31,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 01/08/2026 đến ngày 27/09/2026
 
-![Ảnh đại diện](/images/avatar.jpg)
+<div style="text-align: center;"><img src="/images/profile.jpg" alt="Ảnh đại diện" style="width: 100%; max-width: 400px; height: auto; display: inline-block;"></div>
 
 ### Nội dung báo cáo
 

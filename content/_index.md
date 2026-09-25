@@ -21,7 +21,7 @@ chapter: false
 
 &emsp; **University:** Hanoi University of Civil Engineering
 
-&emsp; **Major:** Information Technology
+&emsp; **Major:** Computer Science
 
 &emsp; **Class:** 68CNCS
 
@@ -31,7 +31,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 01/08/2026 to 27/09/2026
 
-![Profile picture](/images/avatar.jpg)
+<div style="text-align: center;"><img src="/images/profile.jpg" alt="Profile picture" style="width: 100%; max-width: 400px; height: auto; display: inline-block;"></div>
 
 ### Report Content
 
